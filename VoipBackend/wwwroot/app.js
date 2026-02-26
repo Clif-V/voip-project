@@ -61,12 +61,12 @@ class P2PTransport extends MediaTransport {
 
     async initialize(localStream) {
 
-        // 1️⃣ CREATE peerConnection FIRST
+        // creates peerConnection
         this.peerConnection = new RTCPeerConnection({
             iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
         });
 
-        // 2️⃣ THEN attach handlers
+        // attaches handlers
         this.peerConnection.onconnectionstatechange = () => {
             console.log("Connection state:", this.peerConnection.connectionState);
         };
@@ -75,12 +75,12 @@ class P2PTransport extends MediaTransport {
             console.log("ICE state:", this.peerConnection.iceConnectionState);
         };
 
-        // 3️⃣ THEN add tracks
+        // adds local tracks
         localStream.getTracks().forEach(track => {
             this.peerConnection.addTrack(track, localStream);
         });
 
-        // 4️⃣ THEN ICE handler
+        // ICE handler
         this.peerConnection.onicecandidate = (event) => {
             if (event.candidate) {
                 this.connection.invoke("SendIceCandidate", this.roomId, event.candidate);
