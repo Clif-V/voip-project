@@ -87,7 +87,7 @@ class P2PTransport extends MediaTransport {
             }
         };
 
-        // 5️⃣ THEN remote track
+        // remote track
         this.peerConnection.ontrack = (event) => {
             const audio = document.getElementById("remoteAudio");
             audio.srcObject = event.streams[0];
