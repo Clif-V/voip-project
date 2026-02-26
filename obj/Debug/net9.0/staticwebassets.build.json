@@ -1,0 +1,702 @@
+{
+  "Version": 1,
+  "Hash": "24GNsAHi/oRv5a85pmqH72lKAKudOdBJr4NtRxGB9Fs=",
+  "Source": "VoipBackend",
+  "BasePath": "_content/VoipBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "VoipBackend/wwwroot",
+      "Source": "VoipBackend",
+      "ContentRoot": "/Users/cb/Documents/GitHub/voip-project/wwwroot/",
+      "BasePath": "_content/VoipBackend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/71saovt49b-41725jp1kd.gz",
+      "SourceId": "VoipBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/VoipBackend",
+      "RelativePath": "app#[.{fingerprint=41725jp1kd}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/cb/Documents/GitHub/voip-project/wwwroot/app.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "1gzw8ubgtx",
+      "Integrity": "j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/cb/Documents/GitHub/voip-project/wwwroot/app.js"
+    },
+    {
+      "Identity": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz",
+      "SourceId": "VoipBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/VoipBackend",
+      "RelativePath": "index#[.{fingerprint=a7cofxe7ax}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/cb/Documents/GitHub/voip-project/wwwroot/index.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "nk8qzblc8q",
+      "Integrity": "GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/cb/Documents/GitHub/voip-project/wwwroot/index.html"
+    },
+    {
+      "Identity": "/Users/cb/Documents/GitHub/voip-project/wwwroot/app.js",
+      "SourceId": "VoipBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/cb/Documents/GitHub/voip-project/wwwroot/",
+      "BasePath": "_content/VoipBackend",
+      "RelativePath": "app#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "41725jp1kd",
+      "Integrity": "6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/app.js"
+    },
+    {
+      "Identity": "/Users/cb/Documents/GitHub/voip-project/wwwroot/index.html",
+      "SourceId": "VoipBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/cb/Documents/GitHub/voip-project/wwwroot/",
+      "BasePath": "_content/VoipBackend",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "a7cofxe7ax",
+      "Integrity": "OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "app.41725jp1kd.js",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/71saovt49b-41725jp1kd.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000532765051"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1876"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "41725jp1kd"
+        },
+        {
+          "Name": "label",
+          "Value": "app.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA="
+        }
+      ]
+    },
+    {
+      "Route": "app.41725jp1kd.js",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/wwwroot/app.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7017"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "41725jp1kd"
+        },
+        {
+          "Name": "label",
+          "Value": "app.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA="
+        }
+      ]
+    },
+    {
+      "Route": "app.41725jp1kd.js.gz",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/71saovt49b-41725jp1kd.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1876"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "41725jp1kd"
+        },
+        {
+          "Name": "label",
+          "Value": "app.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU="
+        }
+      ]
+    },
+    {
+      "Route": "app.js",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/71saovt49b-41725jp1kd.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000532765051"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1876"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA="
+        }
+      ]
+    },
+    {
+      "Route": "app.js",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/wwwroot/app.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7017"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA="
+        }
+      ]
+    },
+    {
+      "Route": "app.js.gz",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/71saovt49b-41725jp1kd.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1876"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-j5QRGxulkfWavT/WzmFsVKLXFBVm957W6lKgag/aLAU="
+        }
+      ]
+    },
+    {
+      "Route": "index.a7cofxe7ax.html",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003067484663"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a7cofxe7ax"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU="
+        }
+      ]
+    },
+    {
+      "Route": "index.a7cofxe7ax.html",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/wwwroot/index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "635"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a7cofxe7ax"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU="
+        }
+      ]
+    },
+    {
+      "Route": "index.a7cofxe7ax.html.gz",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a7cofxe7ax"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003067484663"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/wwwroot/index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "635"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "325"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 26 Feb 2026 19:02:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GfOfN/g10mjG63Y6ai3O8YTLKAL6jV0DFMoPG0pOZHk="
+        }
+      ]
+    }
+  ]
+}

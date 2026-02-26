@@ -1,0 +1,106 @@
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/appsettings.Development.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/appsettings.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend.staticwebassets.runtime.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend.staticwebassets.endpoints.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend.deps.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend.runtimeconfig.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend.dll
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/VoipBackend.pdb
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/cb/Documents/VOIP Web Service/VoipBackend/bin/Debug/net9.0/System.Net.WebSockets.WebSocketProtocol.dll
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.csproj.AssemblyReference.cache
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.AssemblyInfoInputs.cache
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.AssemblyInfo.cs
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.csproj.CoreCompileInputs.cache
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.MvcApplicationPartsAssemblyInfo.cache
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/scopedcss/bundle/VoipBackend.styles.css
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets.build.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets.development.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.build.VoipBackend.props
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.VoipBackend.props
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.VoipBackend.props
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/staticwebassets.pack.json
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBack.23759DA4.Up2Date
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.dll
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/refint/VoipBackend.dll
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.pdb
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/VoipBackend.genruntimeconfig.cache
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/ref/VoipBackend.dll
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz
+/Users/cb/Documents/VOIP Web Service/VoipBackend/obj/Debug/net9.0/compressed/71saovt49b-o1cik7l4z4.gz
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/appsettings.Development.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/appsettings.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend.staticwebassets.runtime.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend.staticwebassets.endpoints.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend.deps.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend.runtimeconfig.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/VoipBackend.pdb
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/bin/Debug/net9.0/System.Net.WebSockets.WebSocketProtocol.dll
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.csproj.AssemblyReference.cache
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.AssemblyInfoInputs.cache
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.AssemblyInfo.cs
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.csproj.CoreCompileInputs.cache
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.MvcApplicationPartsAssemblyInfo.cache
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/scopedcss/bundle/VoipBackend.styles.css
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/compressed/71saovt49b-o1cik7l4z4.gz
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets.build.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets.development.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.build.VoipBackend.props
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.VoipBackend.props
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.VoipBackend.props
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/staticwebassets.pack.json
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBack.23759DA4.Up2Date
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/refint/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.pdb
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/VoipBackend.genruntimeconfig.cache
+/Users/cb/Documents/GitHub/voip-project/VoipBackend/obj/Debug/net9.0/ref/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/appsettings.Development.json
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/appsettings.json
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend.staticwebassets.runtime.json
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend.staticwebassets.endpoints.json
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend.deps.json
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend.runtimeconfig.json
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/VoipBackend.pdb
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/Newtonsoft.Json.dll
+/Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/System.Net.WebSockets.WebSocketProtocol.dll
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.csproj.AssemblyReference.cache
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.AssemblyInfoInputs.cache
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.AssemblyInfo.cs
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.csproj.CoreCompileInputs.cache
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.MvcApplicationPartsAssemblyInfo.cache
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.sourcelink.json
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/scopedcss/bundle/VoipBackend.styles.css
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/71saovt49b-41725jp1kd.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g5g7zpt3yb-a7cofxe7ax.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets.build.json
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets.development.json
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets/msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets/msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets/msbuild.build.VoipBackend.props
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.VoipBackend.props
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.VoipBackend.props
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets.pack.json
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBack.23759DA4.Up2Date
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/refint/VoipBackend.dll
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.pdb
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/VoipBackend.genruntimeconfig.cache
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/ref/VoipBackend.dll

@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/app.41725jp1kd.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"41725jp1kd"},{"Name":"integrity","Value":"sha256-6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA="},{"Name":"label","Value":"_content/VoipBackend/app.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7017"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00226E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 26 Feb 2026 19:02:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/app.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-6E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7017"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00226E7FrIUF/lKPinEu/mYQbO0/PVHWcBhcYqRBU06rYIA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 26 Feb 2026 19:02:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/index.a7cofxe7ax.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"a7cofxe7ax"},{"Name":"integrity","Value":"sha256-OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU="},{"Name":"label","Value":"_content/VoipBackend/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"635"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 26 Feb 2026 19:02:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/index.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"635"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022OnkaUPdOgu/jQSfFEdMyp93uTV7rfmynZZtzx2TUrlU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 26 Feb 2026 19:02:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>
