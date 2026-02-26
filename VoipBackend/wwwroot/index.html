@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VoIP Test</title>
+</head>
+<body>
+    <h1>VoIP Test</h1>
+    <button id="connectBtn">Connect</button>
+    <button id="disconnectBtn">Disconnect</button>
+
+    <audio id="remoteAudio" autoplay></audio>
+    <button id="startCallBtn">Start Call</button>
+
+    <button id="micBtn">Enable Microphone</button>
+    <button id="micOffBtn">Disable Microphone</button>
+    <p id="micStatus">Mic: Not enabled</p>
+    <p id="volumeLevel">Volume: 0</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
