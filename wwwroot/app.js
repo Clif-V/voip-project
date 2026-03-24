@@ -35,6 +35,57 @@ const micToggle = document.getElementById("micToggle");
 
 const roomId = "test-room";
 
+async function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const res = await fetch("/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username,
+            passwordHash: password
+        })
+    });
+
+    if (!res.ok) {
+        alert("Login failed");
+        return;
+    }
+
+    const data = await res.json();
+
+    localStorage.setItem("username", data.username);
+
+    showApp();
+}
+
+async function register() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const res = await fetch("/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username: username,
+            passwordHash: password
+        })
+    });
+
+    if (!res.ok) {
+        alert("User exists or error");
+        return;
+    }
+
+    alert("Registered! Now login.");
+}
+
+function showApp() {
+    document.getElementById("auth").style.display = "none";
+    document.getElementById("app").style.display = "block";
+}
+
 connection.on("ReceiveOffer", async offer => {
     if (!transport) {
         transport = createTransport("p2p", connection, roomId);
@@ -336,4 +387,45 @@ function detectVolume() {
     volumeLevel.textContent = "Volume: " + average;
 
     requestAnimationFrame(detectVolume);
+}
+
+async function logout() {
+    console.log("Logging out...");
+
+    //Stop SignalR
+    if (connection.state !== signalR.HubConnectionState.Disconnected) {
+        try {
+            await connection.stop();
+        } catch (e) {
+            console.error("Error stopping connection:", e);
+        }
+    }
+
+    //Close WebRTC
+    if (transport) {
+        await transport.close();
+        transport = null;
+    }
+
+    //Stop mic
+    if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        localStream = null;
+    }
+
+    //Clear login
+    localStorage.removeItem("username");
+
+    //Reset state
+    appState = "disconnected";
+
+    //Show login screen
+    document.getElementById("app").style.display = "none";
+    document.getElementById("auth").style.display = "block";
+
+    console.log("Logged out");
+}
+
+if (localStorage.getItem("username")) {
+    showApp();
 }

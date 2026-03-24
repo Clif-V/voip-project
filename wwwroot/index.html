@@ -3,23 +3,34 @@
 <head>
     <title>VoIP Test</title>
 </head>
-<body>
-    <h1>VoIP Test</h1>
-    <button id="connectBtn">Connect</button>
-    <button id="disconnectBtn">Disconnect</button>
+<div id="auth">
+    <h2>Login</h2>
+    <input id="username" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
 
-    <audio id="remoteAudio" autoplay></audio>
+    <button onclick="login()">Login</button>
+    <button onclick="register()">Register</button>
+</div>
+<div id="app" style="display:none;">
+    <body>
+        <h1>VoIP Test</h1>
+        <button id="connectBtn">Connect</button>
+        <button id="disconnectBtn">Disconnect</button>
 
-    <button id="micBtn">Enable Microphone</button>
-    <button id="micToggle">Toggle Microphone</button>
-    <p id="micStatus">Mic: Not enabled</p>
-    <p id="volumeLevel">Volume: 0</p>
+        <audio id="remoteAudio" autoplay></audio>
 
-    <div id="remoteMuteIndicator">
-    Remote user state unknown
-    </div>
+        <button id="micBtn">Enable Microphone</button>
+        <button id="micToggle">Toggle Microphone</button>
+        <button onclick="logout()">Logout</button>
+        <p id="micStatus">Mic: Not enabled</p>
+        <p id="volumeLevel">Volume: 0</p>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-    <script src="app.js"></script>
-</body>
+        <div id="remoteMuteIndicator">
+        Remote user state unknown
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</div>
 </html>

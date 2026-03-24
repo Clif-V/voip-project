@@ -103,7 +103,6 @@
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/scopedcss/scopedcss.cache
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/staticwebassets.build.json.cache
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/swae.build.ex.cache
-/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/vt4oj8rc8s-{0}-f5q83a9n4z-f5q83a9n4z.gz
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/BCrypt.Net-Next.dll
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/Humanizer.dll
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
@@ -217,4 +216,5 @@
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/runtimes/win-arm64/native/e_sqlite3.dll
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/runtimes/win-x86/native/e_sqlite3.dll
-/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/eoptokd8me-{0}-k3yvlu6jtm-k3yvlu6jtm.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/eoptokd8me-{0}-xaqlfbomri-xaqlfbomri.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/vt4oj8rc8s-{0}-w5x4q5lyvo-w5x4q5lyvo.gz

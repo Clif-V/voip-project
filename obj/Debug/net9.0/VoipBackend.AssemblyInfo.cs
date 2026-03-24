@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VoipBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a76a0fb9d31a8c1e187e5b1ab4c4c25da891f304")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dad5669060266eb14c54239832cc3471881f55a")]
 [assembly: System.Reflection.AssemblyProductAttribute("VoipBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VoipBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

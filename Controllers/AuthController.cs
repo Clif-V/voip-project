@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using VoipBackend.Data;
-using VoipBackend.Models;
-using Microsoft.EntityFrameworkCore;
+using VoipBackend.Services;
 
 namespace VoipBackend.Controllers
 {
@@ -9,45 +7,37 @@ namespace VoipBackend.Controllers
     [Route("auth")]
     public class AuthController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly AuthService _auth;
 
-        public AuthController(AppDbContext context)
+        public AuthController(AuthService auth)
         {
-            _context = context;
+            _auth = auth;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] User input)
+        public async Task<IActionResult> Register([FromBody] dynamic input)
         {
-            var exists = await _context.Users
-                .AnyAsync(u => u.Username == input.Username);
+            var success = await _auth.Register(
+                (string)input.username,
+                (string)input.passwordHash
+            );
 
-            if (exists)
+            if (!success)
                 return BadRequest("User already exists");
 
-            var user = new User
-            {
-                Username = input.Username,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(input.PasswordHash)
-            };
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Registered" });
+            return Ok();
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User input)
+        public async Task<IActionResult> Login([FromBody] dynamic input)
         {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == input.Username);
+            var user = await _auth.Login(
+                (string)input.username,
+                (string)input.passwordHash
+            );
 
             if (user == null)
-                return Unauthorized("Invalid username");
-
-            if (!BCrypt.Net.BCrypt.Verify(input.PasswordHash, user.PasswordHash))
-                return Unauthorized("Invalid password");
+                return Unauthorized();
 
             return Ok(new { username = user.Username });
         }
