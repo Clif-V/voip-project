@@ -9,12 +9,15 @@
     <button id="disconnectBtn">Disconnect</button>
 
     <audio id="remoteAudio" autoplay></audio>
-    <button id="startCallBtn">Start Call</button>
 
     <button id="micBtn">Enable Microphone</button>
-    <button id="micOffBtn">Disable Microphone</button>
+    <button id="micToggle">Toggle Microphone</button>
     <p id="micStatus">Mic: Not enabled</p>
     <p id="volumeLevel">Volume: 0</p>
+
+    <div id="remoteMuteIndicator">
+    Remote user state unknown
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
     <script src="app.js"></script>

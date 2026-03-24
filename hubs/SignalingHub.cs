@@ -26,4 +26,9 @@ public class SignalingHub : Hub
         await Clients.OthersInGroup(roomId)
             .SendAsync("ReceiveIceCandidate", candidate);
     }
+    public async Task SendMuteState(string roomId, bool isMuted)
+    {
+        await Clients.OthersInGroup(roomId)
+            .SendAsync("UserMuteChanged", Context.ConnectionId, isMuted);
+    }
 }

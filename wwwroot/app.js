@@ -8,6 +8,8 @@ let analyser;
 let dataArray;
 let animationFrameId = null;
 let transport = null;
+let isMuted = false;
+let appState = "disconnected";
 
 const transportMode = "p2p"; // or "sfu"
 
@@ -28,6 +30,7 @@ const connectBtn = document.getElementById("connectBtn");
 const disconnectBtn = document.getElementById("disconnectBtn");
 const micOffBtn = document.getElementById("micOffBtn");
 const startCallBtn = document.getElementById("startCallBtn");
+const micToggle = document.getElementById("micToggle");
 
 const roomId = "test-room";
 
@@ -48,6 +51,18 @@ connection.on("ReceiveAnswer", async answer => {
 
 connection.on("ReceiveIceCandidate", async candidate => {
     await transport.handleIceCandidate(candidate);
+});
+
+connection.on("UserMuteChanged", (connectionId, isMuted) => {
+    console.log("User mute changed:", connectionId, isMuted);
+
+    const indicator = document.getElementById("remoteMuteIndicator");
+
+    if (isMuted) {
+        indicator.textContent = "Remote user is muted";
+    } else {
+        indicator.textContent = "Remote user is speaking";
+    }
 });
 
 class P2PTransport extends MediaTransport {
@@ -123,19 +138,6 @@ class P2PTransport extends MediaTransport {
     }
 }
 
-startCallBtn.addEventListener("click", async () => {
-    if (!localStream) {
-        alert("Enable microphone first");
-        return;
-    }
-
-    transport = createTransport("p2p", connection, roomId);
-    await transport.initialize(localStream);
-
-    // Important: only one peer should create offer
-    await transport.createAndSendOffer();
-});
-
 // Placeholder for SFU transport - not implemented yet
 class SFUTransport extends MediaTransport {
     async initialize(localStream) {
@@ -154,23 +156,40 @@ function createTransport(mode, connection, roomId) {
 }
 
 connectBtn.addEventListener("click", async () => {
-    if (connection.state === signalR.HubConnectionState.Disconnected) {
-        await connection.start();
-        console.log("Connected to signaling server");
+    switch (appState) {
 
-        await connection.invoke("JoinRoom", roomId);
-        console.log("Joined room");
-    } else {
-        console.log("Already connected");
+        case "disconnected":
+            await startConnection();
+            break;
+
+        case "connected":
+            await startCall();
+            break;
+
+        case "in-call":
+            await endCall();
+            break;
     }
+
+    updateUI();
 });
 
 disconnectBtn.addEventListener("click", async () => {
     if (connection.state !== signalR.HubConnectionState.Disconnected) {
         await connection.stop();
         console.log("Disconnected from signaling server");
-    } else {
-        console.log("Already disconnected");
+    }
+
+    if (transport) {
+        await transport.close();
+        transport = null;
+        console.log("Closed WebRTC transport");
+    }
+
+    if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        localStream = null;
+        console.log("Stopped local stream");
     }
 });
 
@@ -191,54 +210,114 @@ micBtn.addEventListener("click", async () => {
     }
 });
 
-micOffBtn.addEventListener("click", () => {
-    stopMicrophone();
+micToggle.addEventListener("click", () => {
+    toggleMicrophoneMute();
+
 });
 
 function setupAudioAnalysis(stream) {
     audioContext = new AudioContext();
-    const source = audioContext.createMediaStreamSource(stream);
 
+    const source = audioContext.createMediaStreamSource(stream);
     analyser = audioContext.createAnalyser();
     analyser.fftSize = 256;
+
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = 0; // Mute the output to avoid feedback
 
     const bufferLength = analyser.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
 
     source.connect(analyser);
+    analyser.connect(gainNode);
+    gainNode.connect(audioContext.destination);
 
     detectVolume();
 }
 
-function stopMicrophone() {
+async function startConnection() {
+    await connection.start();
+    console.log("Connected to signaling server");
+
+    await connection.invoke("JoinRoom", roomId);
+    console.log("Joined room");
+
+    appState = "connected";
+}
+
+async function startCall() {
     if (!localStream) {
-        console.log("Mic not active");
+        alert("Enable microphone first");
         return;
     }
 
-    // Cancel animation loop FIRST
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
+    transport = createTransport("p2p", connection, roomId);
+    await transport.initialize(localStream);
+
+    await transport.createAndSendOffer();
+
+    appState = "in-call";
+}
+
+async function endCall() {
+    if (transport) {
+        await transport.close();
+        transport = null;
     }
 
-    // Stop tracks
-    localStream.getTracks().forEach(track => track.stop());
-    localStream = null;
+    await disconnectCompletely();
 
-    // Close audio context
-    if (audioContext) {
-        audioContext.close();
-        audioContext = null;
+    appState = "connected";
+}
+
+async function disconnectCompletely() {
+    await connection.invoke("LeaveRoom", roomId);
+    await connection.stop();
+
+    if (transport) {
+        await transport.close();
+        transport = null;
     }
 
-    analyser = null;
-    dataArray = null;
+    if (localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        localStream = null;
+    }
 
-    micStatus.textContent = "Mic: Disabled";
-    volumeLevel.textContent = "Volume: 0";
+    appState = "disconnected";
+}
 
-    console.log("Microphone stopped");
+function updateUI() {
+    switch (appState) {
+        case "disconnected":
+            connectBtn.textContent = "Connect";
+            break;
+        case "connected":
+            connectBtn.textContent = "Start Call";
+            break;
+        case "in-call":
+            connectBtn.textContent = "End Call";
+            break;
+    }
+}
+
+function getCurrentMuteState() {
+    return isMuted;
+}
+
+function toggleMicrophoneMute() {
+    if (!localStream) return;
+
+    const track = localStream.getAudioTracks()[0];
+    track.enabled = !track.enabled;
+
+    isMuted = !track.enabled;
+
+    micStatus.textContent = isMuted
+        ? "Mic: Muted"
+        : "Mic: Unmuted";
+
+    connection.invoke("SendMuteState", roomId, getCurrentMuteState());
 }
 
 function detectVolume() {
