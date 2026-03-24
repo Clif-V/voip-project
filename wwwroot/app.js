@@ -10,6 +10,7 @@ let animationFrameId = null;
 let transport = null;
 let isMuted = false;
 let appState = "disconnected";
+const userID = crypto.randomUUID();
 
 const transportMode = "p2p"; // or "sfu"
 
@@ -264,8 +265,6 @@ async function endCall() {
         await transport.close();
         transport = null;
     }
-
-    await disconnectCompletely();
 
     appState = "connected";
 }
