@@ -15,7 +15,6 @@
     <body>
         <h1>VoIP Test</h1>
         <button id="connectBtn">Connect</button>
-        <button id="disconnectBtn">Disconnect</button>
 
         <audio id="remoteAudio" autoplay></audio>
 
@@ -29,8 +28,18 @@
         Remote user state unknown
         </div>
 
+        <h3>Online Users</h3>
+        <div id="userList"></div>
+
+        <div id="incomingCall" style="display:none;">
+            <p id="callerText">Incoming call...</p>
+            <button onclick="acceptCall()">Accept</button>
+            <button onclick="rejectCall()">Reject</button>
+        </div>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-        <script src="app.js"></script>
+        <script src="JavaScript/app.js"></script>
+        <script src="JavaScript/auth.js"></script>
     </body>
 </div>
 </html>

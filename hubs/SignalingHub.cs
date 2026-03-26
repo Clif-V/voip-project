@@ -1,9 +1,13 @@
+using System.Collections.Concurrent;
 using Microsoft.AspNetCore.SignalR;
 
 namespace VoipBackend.Hubs;
 
 public class SignalingHub : Hub
 {
+    static ConcurrentDictionary<string, string> users = new();           // username → connectionId
+    static ConcurrentDictionary<string, string> connections = new();     // connectionId → username
+
     public async Task JoinRoom(string roomId)
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, roomId);
@@ -13,6 +17,26 @@ public class SignalingHub : Hub
     {
         await Clients.OthersInGroup(roomId)
             .SendAsync("ReceiveOffer", offer);
+    }
+
+    public async Task SendOfferToUser(string targetUsername, object offer)
+    {
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            var callerUsername = connections[Context.ConnectionId];
+
+            await Clients.Client(connectionId)
+                .SendAsync("ReceiveOffer", offer, callerUsername);
+        }
+    }
+
+    public async Task SendAnswerToUser(string targetUsername, object answer)
+    {
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            await Clients.Client(connectionId)
+                .SendAsync("ReceiveAnswer", answer);
+        }
     }
 
     public async Task SendAnswer(string roomId, object answer)
@@ -26,9 +50,48 @@ public class SignalingHub : Hub
         await Clients.OthersInGroup(roomId)
             .SendAsync("ReceiveIceCandidate", candidate);
     }
+
+    public async Task SendIceCandidateToUser(string targetUsername, object candidate)
+    {
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            await Clients.Client(connectionId)
+                .SendAsync("ReceiveIceCandidate", candidate);
+        }
+    }
+
     public async Task SendMuteState(string roomId, bool isMuted)
     {
         await Clients.OthersInGroup(roomId)
             .SendAsync("UserMuteChanged", Context.ConnectionId, isMuted);
+    }
+
+    async Task BroadcastUserList()
+    {
+        var userList = users.Keys.ToList();
+
+        await Clients.All.SendAsync("UserListUpdated", userList);
+    }
+
+    public override async Task OnDisconnectedAsync(Exception? exception)
+    {
+        if (connections.TryRemove(Context.ConnectionId, out var username))
+        {
+            users.TryRemove(username, out _);
+            Console.WriteLine($"{username} disconnected");
+
+            await BroadcastUserList();
+        }
+
+        await base.OnDisconnectedAsync(exception);
+    }
+
+    public override Task OnConnectedAsync()
+    {
+        var username = Context.User?.Identity?.Name;
+
+        Console.WriteLine($"connected: {username}");
+
+        return base.OnConnectedAsync();
     }
 }
