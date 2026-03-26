@@ -13,7 +13,8 @@ connection.on("ReceiveOffer", (offer, callerUsername) => {
     console.log("Incoming call from:", callerUsername);
 
     state.currentTargetUser = callerUsername;
-    state.pendingOffer = offer;
+    state.pendingOffer = offer.offer;
+    state.transportMode = offer.mode || "p2p"; // Default to P2P if mode not provided
 
     UI.showIncomingCall();
 });

@@ -1,3 +1,7 @@
+import * as Signaling from "./signaling.js";
+import { state } from "./state.js";
+import * as RTC from "./webrtc.js";
+
 export async function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -24,6 +28,23 @@ export async function login() {
     showApp();
 }
 
+export async function logout() {
+    Signaling.connection.stop();
+
+    console.log(state.localStream);
+
+    await RTC.endCall();
+
+    if (state.localStream) {
+        state.localStream.getTracks().forEach(track => track.stop());
+    }
+
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+
+    showLogin();
+}
+
 export async function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -48,4 +69,9 @@ export async function register() {
 export function showApp() {
     document.getElementById("auth").style.display = "none";
     document.getElementById("app").style.display = "block";
+}
+
+export function showLogin(){
+    document.getElementById("auth").style.display = "block";
+    document.getElementById("app").style.display = "none";  
 }

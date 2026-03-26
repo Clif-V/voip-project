@@ -33,7 +33,9 @@ class P2PTransport {
         const offer = await this.pc.createOffer();
         await this.pc.setLocalDescription(offer);
 
-        await connection.invoke("SendOfferToUser", this.targetUser, offer);
+        await connection.invoke("SendOfferToUser", this.targetUser,
+             {offer: offer, mode: state.transportMode}
+            );
     }
 
     async handleOffer(offer) {
@@ -58,12 +60,25 @@ class P2PTransport {
     }
 }
 
+class SFUTransport {
+    // Placeholder for SFU transport implementation
+    constructor(targetUser) {
+        this.targetUser = targetUser;
+    }
+}
+
 export async function startCall(username) {
     if (!state.localStream) return;
 
     state.currentTargetUser = username;
 
-    state.transport = new P2PTransport(username);
+    if (state.transportMode === "p2p") {
+        state.transport = new P2PTransport(username);
+    } else if (state.transportMode === "sfu") {
+        // Placeholder for SFU transport
+        console.warn("SFU mode not implemented yet");
+        return;
+    }
     await state.transport.initialize(state.localStream);
     await state.transport.createAndSendOffer();
 
@@ -73,7 +88,14 @@ export async function startCall(username) {
 export async function acceptCall() {
     if (!state.localStream) return;
 
-    state.transport = new P2PTransport(state.currentTargetUser);
+    if (state.transportMode === "p2p") {
+        state.transport = new P2PTransport(state.currentTargetUser);
+    } else if (state.transportMode === "sfu") {
+        // Placeholder for SFU transport
+        console.warn("SFU mode not implemented yet");
+        return;
+    }
+
     await state.transport.initialize(state.localStream);
     await state.transport.handleOffer(state.pendingOffer);
 

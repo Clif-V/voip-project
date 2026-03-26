@@ -39,6 +39,11 @@ namespace VoipBackend.Services
 
             if (!BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
                 return null;
+            
+            foreach(var client in _context.Users)
+            {
+                Console.WriteLine($"User: {client.Username}, Hash: {client.PasswordHash}");
+            }
 
             return user;
         }

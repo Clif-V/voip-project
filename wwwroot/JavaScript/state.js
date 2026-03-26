@@ -9,5 +9,5 @@ export const state = {
     appState: "disconnected",
     currentTargetUser: null,
     pendingOffer: null,
-    transportMode: "p2p", // or "sfu"
+    transportMode: document.querySelector('input[name="transportMode"]:checked')?.value, // "p2p" or "sfu"
 };
