@@ -48,30 +48,36 @@ export async function logout() {
 export async function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value;
 
     const res = await fetch("/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             username,
-            passwordHash: password
+            passwordHash: password,
+            email
         })
     });
 
     if (!res.ok) {
         alert("User exists or error");
+        console.log(await res.status());
         return;
     }
 
     alert("Registered! Now login.");
-}
-
-export function showApp() {
-    document.getElementById("auth").style.display = "none";
-    document.getElementById("app").style.display = "block";
+    window.location.href = "index.html";
 }
 
 export function showLogin(){
-    document.getElementById("auth").style.display = "block";
-    document.getElementById("app").style.display = "none";  
+    window.location.href = "index.html";
+}
+
+export function showRegistration(){
+    window.location.href = "register.html";
+}
+
+export function showApp(){
+    window.location.href = "app.html";
 }

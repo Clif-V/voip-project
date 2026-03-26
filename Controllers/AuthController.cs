@@ -25,7 +25,7 @@ namespace VoipBackend.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthRequest input)
         {
-            var success = await _auth.Register(input.Username, input.PasswordHash);
+            var success = await _auth.Register(input.Username, input.PasswordHash, input.Email);
 
             if (!success)
                 return BadRequest("User already exists");

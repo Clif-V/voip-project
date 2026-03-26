@@ -1,52 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>VoIP Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 </head>
+<body>
+    
+</body>
+</html>
 <div id="auth">
     <h2>Login</h2>
     <input id="username" placeholder="Username" />
     <input id="password" type="password" placeholder="Password" />
 
     <button id="loginBtn">Login</button>
-    <button id="registerBtn">Register</button>
+    <a href="register.html"><button>Register</button></a>
 </div>
-<div id="app" style="display:none;">
-    <body>
-        <h1>VoIP Test</h1>
-        <button id="connectBtn">Connect</button>
-
-        <audio id="remoteAudio" autoplay></audio>
-
-        <button id="micBtn">Enable Microphone</button>
-        <button id="micToggle">Toggle Microphone</button>
-        <button id="logoutBtn">Logout</button>
-        <p id="micStatus">Mic: Not enabled</p>
-        <p id="volumeLevel">Volume: 0</p>
-
-        <div id="remoteMuteIndicator">
-        Remote user state unknown
-        </div>
-
-        <input id ="p2p" name="transportMode" type="radio" value="p2p">
-        <label for="p2p">P2P</label>
-        <input id ="sfu" name="transportMode" type="radio" value="sfu">
-        <label for="sfu">SFU</label>
-
-        <h3>Online Users</h3>
-        <div id="userList"></div>
-
-        <div id="incomingCall" style="display:none;">
-            <p id="callerText">Incoming call...</p>
-            <button id="acceptCallBtn">Accept</button>
-            <button id="rejectCallBtn">Reject</button>
-        </div>
-
-        <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-        <script type="module" src="JavaScript/app.js"></script>
-        <script type="module" src="JavaScript/auth.js"></script>
-        <script type="module" src="JavaScript/ui.js"></script>
-        <script type="module" src="JavaScript/webrtc.js"></script>
-    </body>
-</div>
-</html>
