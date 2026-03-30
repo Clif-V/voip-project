@@ -6,12 +6,15 @@ export async function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
+    console.log("Attempting login with username:", username);
+    console.log("Attempting login with password:", password ? "******" : "(empty)");
+
     const res = await fetch("/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            username,
-            passwordHash: password
+            identifier: username,
+            password: password
         })
     });
 
@@ -21,6 +24,8 @@ export async function login() {
     }
 
     const data = await res.json();
+
+    console.log("Login successful:", data);
 
     localStorage.setItem("username", data.username);
     localStorage.setItem("token", data.token);
@@ -55,7 +60,7 @@ export async function register() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             username,
-            passwordHash: password,
+            password,
             email
         })
     });

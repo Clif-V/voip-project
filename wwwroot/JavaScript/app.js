@@ -5,12 +5,15 @@ import * as WebRTC from "./webrtc.js";
 import * as Auth from "./auth.js";
 import * as Signaling from "./signaling.js";
 
+// Redirect to login if not authenticated
+if (!localStorage.getItem("token")) {
+    window.location.href = "index.html";
+}
+
 const micToggle = document.getElementById("micToggle");
 const micBtn = document.getElementById("micBtn");
 const connectBtn = document.getElementById("connectBtn");
 const logoutBtn = document.getElementById("logoutBtn");
-const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
 const acceptCallBtn = document.getElementById("acceptCallBtn");
 const rejectCallBtn = document.getElementById("rejectCallBtn");
 const transportRadios = document.querySelectorAll('input[name="transportMode"]');
@@ -37,14 +40,6 @@ transportRadios.forEach(radio => {
 
 logoutBtn.addEventListener("click", () => {
     Auth.logout();
-});
-
-loginBtn.addEventListener("click", () => {
-    Auth.login();
-});
-
-registerBtn.addEventListener("click", () => {
-    Auth.register();
 });
 
 acceptCallBtn.addEventListener("click", async () => {
@@ -92,8 +87,3 @@ micBtn.addEventListener("click", async () => {
 micToggle.addEventListener("click", () => {
     Audio.toggleMicrophoneMute();
 });
-
-//Auto-login
-if (localStorage.getItem("username")) {
-    Auth.showApp();
-}

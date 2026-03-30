@@ -3,8 +3,8 @@
 <head>
     <title>VoIP Test</title>
 </head>
-<div id="app" style="display:none;">
-    <body>
+<body>
+    <div id="app">
         <h1>VoIP Test</h1>
         <button id="connectBtn">Connect</button>
 
@@ -33,12 +33,11 @@
             <button id="acceptCallBtn">Accept</button>
             <button id="rejectCallBtn">Reject</button>
         </div>
-
-        <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-        <script type="module" src="../JavaScript/"></script>
-        <script type="module" src="../JavaScript/"></script>
-        <script type="module" src="../JavaScript/"></script>
-        <script type="module" src="../JavaScript/"></script>
-    </body>
-</div>
+    </div>
+</body>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script type="module" src="../JavaScript/state.js"></script>
+    <script type="module" src="../JavaScript/app.js"></script>
+    <script type="module" src="../JavaScript/webrtc.js"></script>
+    <script type="module" src="../JavaScript/ui.js"></script>
 </html>

@@ -20,9 +20,10 @@ namespace VoipBackend.Services
 
             var user = new User
             {
-                Username = username,
+                Username = username.ToLower(),
+                
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
-                Email = email
+                Email = email.ToLower()
             };
 
             _context.Users.Add(user);
@@ -31,28 +32,31 @@ namespace VoipBackend.Services
             return true;
         }
 
-        public async Task<User?> Login(string username, string password)
+        public async Task<User?> findUser(string identifier, string password)
         {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username);
-
-            if (user == null) return null;
-
-            if (!BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
-                return null;
-            
-            foreach(var client in _context.Users)
+            if (identifier.Contains("@"))
             {
-                Console.WriteLine($"User: {client.Username}, Hash: {client.PasswordHash}");
+                Console.WriteLine($"Finding user by email: {identifier}");
+                return await _context.Users.FirstOrDefaultAsync(u => u.Email == identifier.ToLower());
             }
-
-            return user;
+            else
+            {
+                Console.WriteLine($"Finding user by username: {identifier}");
+                return await _context.Users.FirstOrDefaultAsync(u => u.Username == identifier.ToLower());
+            }
         }
 
-        public async Task<User?> GetUserByUsername(string username)
+        public async Task<User?> DeleteByUserName(string username)
         {
-            return await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            if (user == null)
+            {
+                return null;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
     }
 }

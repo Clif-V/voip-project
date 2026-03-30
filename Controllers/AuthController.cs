@@ -5,7 +5,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 
 namespace VoipBackend.Controllers
@@ -23,9 +22,15 @@ namespace VoipBackend.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] AuthRequest input)
+        public async Task<IActionResult> Register([FromBody] AuthRequestRegister input)
         {
-            var success = await _auth.Register(input.Username, input.PasswordHash, input.Email);
+
+            if (input.Username.Contains("@"))
+            {
+                return BadRequest("Username cannot contain '@'.");
+            }
+
+            var success = await _auth.Register(input.Username, input.Password, input.Email);
 
             if (!success)
                 return BadRequest("User already exists");
@@ -34,13 +39,18 @@ namespace VoipBackend.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] AuthRequest input)
+        public async Task<IActionResult> Login([FromBody] AuthRequestLogin input)
         {
-            var user = await _auth.Login(input.Username, input.PasswordHash);
+            var user = await _auth.findUser(input.Identifier, input.Password);
 
             if (user == null)
             {
-                return Unauthorized("No valid user.");
+                return Unauthorized("Incorrect username/email.");
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(input.Password, user.PasswordHash))
+            {
+                return Unauthorized("Invalid password.");
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SUPERS_SECRET_PLACEHOLDER_KEY_CHANGE_LATER_PLEASE"));
@@ -49,7 +59,8 @@ namespace VoipBackend.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Email, user.Email)
             };
 
             var token = new JwtSecurityToken(
@@ -63,7 +74,8 @@ namespace VoipBackend.Controllers
             return Ok(new
             {
                 token = jwt,
-                username = user.Username
+                username = user.Username,
+                email = user.Email
             });
         }
 
@@ -72,8 +84,30 @@ namespace VoipBackend.Controllers
         public async Task<IActionResult> Me()
         {
             var username = User.Identity?.Name;
+            var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
 
-            return Ok(new {username});
+            return Ok(new {username, email});
+        }
+
+        [Authorize]
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete()
+        {
+            var username = User.Identity?.Name;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                return Unauthorized("User identity not found.");
+            }
+
+            var user = await _auth.DeleteByUserName(username);
+
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            return NoContent();
         }
     }
 }

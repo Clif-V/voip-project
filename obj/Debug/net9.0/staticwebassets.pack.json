@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\app.js",
+      "PackagePath": "staticwebassets\\JavaScript\\app.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\audio.js",
+      "PackagePath": "staticwebassets\\JavaScript\\audio.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\auth.js",
+      "PackagePath": "staticwebassets\\JavaScript\\auth.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\login.js",
+      "PackagePath": "staticwebassets\\JavaScript\\login.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\signaling.js",
+      "PackagePath": "staticwebassets\\JavaScript\\signaling.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\state.js",
+      "PackagePath": "staticwebassets\\JavaScript\\state.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\ui.js",
+      "PackagePath": "staticwebassets\\JavaScript\\ui.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\webrtc.js",
+      "PackagePath": "staticwebassets\\JavaScript\\webrtc.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\app.html",
+      "PackagePath": "staticwebassets\\app.html"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\register.html",
+      "PackagePath": "staticwebassets\\register.html"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.VoipBackend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.VoipBackend.props",
+      "PackagePath": "build\\VoipBackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.VoipBackend.props",
+      "PackagePath": "buildMultiTargeting\\VoipBackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.VoipBackend.props",
+      "PackagePath": "buildTransitive\\VoipBackend.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

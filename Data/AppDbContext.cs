@@ -12,13 +12,25 @@ namespace VoipBackend.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(u => u.Username).IsUnique();
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
                 entity.HasIndex(u => u.Email).IsUnique();
-            });
 
+                // Configure FriendRequest relationships
+                entity.HasMany(u => u.SentRequests)
+                    .WithOne()
+                    .HasForeignKey(fr => fr.FromUserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasMany(u => u.ReceivedRequests)
+                    .WithOne()
+                    .HasForeignKey(fr => fr.ToUserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                // Configure Friendship relationships
+                entity.HasMany(u => u.Friendships)
+                    .WithOne()
+                    .HasForeignKey(f => f.User1Id)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
         }
         public DbSet<User> Users { get; set; }
 

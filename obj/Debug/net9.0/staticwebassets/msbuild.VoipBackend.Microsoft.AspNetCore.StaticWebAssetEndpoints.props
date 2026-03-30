@@ -1,0 +1,136 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/app.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002B2A38zTeOQntP3/ApAvXu1ucYXUlyPuvRsch0vpsD/A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1519"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022\u002B2A38zTeOQntP3/ApAvXu1ucYXUlyPuvRsch0vpsD/A=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:42:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/app.l81ffjl8lk.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\app.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"l81ffjl8lk"},{"Name":"integrity","Value":"sha256-\u002B2A38zTeOQntP3/ApAvXu1ucYXUlyPuvRsch0vpsD/A="},{"Name":"label","Value":"_content/VoipBackend/app.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1519"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022\u002B2A38zTeOQntP3/ApAvXu1ucYXUlyPuvRsch0vpsD/A=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:42:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/index.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-SCIlT/xO9matTzcmEVnaPH7Oppw7fh962Julu4icBt4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"686"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022SCIlT/xO9matTzcmEVnaPH7Oppw7fh962Julu4icBt4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 21:07:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/index.wi1sfqt0x3.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wi1sfqt0x3"},{"Name":"integrity","Value":"sha256-SCIlT/xO9matTzcmEVnaPH7Oppw7fh962Julu4icBt4="},{"Name":"label","Value":"_content/VoipBackend/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"686"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022SCIlT/xO9matTzcmEVnaPH7Oppw7fh962Julu4icBt4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 21:07:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/app.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\app.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ky9w6q0zw3xQXMpXieYuMGC7A1eTCEm2rn\u002BvxhoXGqU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2784"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ky9w6q0zw3xQXMpXieYuMGC7A1eTCEm2rn\u002BvxhoXGqU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:43:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/app.zs06uaqw92.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\app.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"zs06uaqw92"},{"Name":"integrity","Value":"sha256-ky9w6q0zw3xQXMpXieYuMGC7A1eTCEm2rn\u002BvxhoXGqU="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/app.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2784"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ky9w6q0zw3xQXMpXieYuMGC7A1eTCEm2rn\u002BvxhoXGqU=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:43:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/audio.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\audio.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-EyF6LJHNLHOTFuLSzRg\u002BAJmvZ3Qux6Dz1Z2QkmqEpww="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1311"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022EyF6LJHNLHOTFuLSzRg\u002BAJmvZ3Qux6Dz1Z2QkmqEpww=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/audio.lu6x2zd7jj.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\audio.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lu6x2zd7jj"},{"Name":"integrity","Value":"sha256-EyF6LJHNLHOTFuLSzRg\u002BAJmvZ3Qux6Dz1Z2QkmqEpww="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/audio.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1311"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022EyF6LJHNLHOTFuLSzRg\u002BAJmvZ3Qux6Dz1Z2QkmqEpww=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/auth.e1mrhf93p9.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\auth.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"e1mrhf93p9"},{"Name":"integrity","Value":"sha256-UkWWYJKmtSFXFIPX8hRsDH0Md7FARMe5Ok6krLxZVvk="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/auth.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2255"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022UkWWYJKmtSFXFIPX8hRsDH0Md7FARMe5Ok6krLxZVvk=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:26:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/auth.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\auth.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-UkWWYJKmtSFXFIPX8hRsDH0Md7FARMe5Ok6krLxZVvk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2255"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022UkWWYJKmtSFXFIPX8hRsDH0Md7FARMe5Ok6krLxZVvk=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:26:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/login.2k0whar10r.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\login.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2k0whar10r"},{"Name":"integrity","Value":"sha256-0tNllKM8Gz8S5ConJuza5q09tsn8s/FakXlYyeMIfe4="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/login.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"330"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00220tNllKM8Gz8S5ConJuza5q09tsn8s/FakXlYyeMIfe4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:43:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/login.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\login.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-0tNllKM8Gz8S5ConJuza5q09tsn8s/FakXlYyeMIfe4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"330"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00220tNllKM8Gz8S5ConJuza5q09tsn8s/FakXlYyeMIfe4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 23:43:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/signaling.5m486lqt2u.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\signaling.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"5m486lqt2u"},{"Name":"integrity","Value":"sha256-oxxShAjLEOiqVkJ1uXsVcMZRDMVwFHYarDpkyLXsjRY="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/signaling.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1758"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022oxxShAjLEOiqVkJ1uXsVcMZRDMVwFHYarDpkyLXsjRY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 20:58:50 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/signaling.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\signaling.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-oxxShAjLEOiqVkJ1uXsVcMZRDMVwFHYarDpkyLXsjRY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1758"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022oxxShAjLEOiqVkJ1uXsVcMZRDMVwFHYarDpkyLXsjRY=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 20:58:50 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/state.c5mhflbcl1.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\state.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"c5mhflbcl1"},{"Name":"integrity","Value":"sha256-YB3m3oe8ibllQq3\u002BHUuK8bv/DsenqExDqsLcMcXhTq8="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/state.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"384"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022YB3m3oe8ibllQq3\u002BHUuK8bv/DsenqExDqsLcMcXhTq8=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/state.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\state.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-YB3m3oe8ibllQq3\u002BHUuK8bv/DsenqExDqsLcMcXhTq8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"384"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022YB3m3oe8ibllQq3\u002BHUuK8bv/DsenqExDqsLcMcXhTq8=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/ui.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\ui.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-hL4Vaom5GeNWDCExxIsXahXrWYYC9CKNrCN3pfy7c4A="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1185"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022hL4Vaom5GeNWDCExxIsXahXrWYYC9CKNrCN3pfy7c4A=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/ui.wxs0cwqy1c.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\ui.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wxs0cwqy1c"},{"Name":"integrity","Value":"sha256-hL4Vaom5GeNWDCExxIsXahXrWYYC9CKNrCN3pfy7c4A="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/ui.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1185"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022hL4Vaom5GeNWDCExxIsXahXrWYYC9CKNrCN3pfy7c4A=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/webrtc.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\webrtc.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-uB\u002BeXdJeYBj/zZ0S/7ZcTMqUcx5DGUXkVZS3LTFaD6U="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3113"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022uB\u002BeXdJeYBj/zZ0S/7ZcTMqUcx5DGUXkVZS3LTFaD6U=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/JavaScript/webrtc.w2u006bvqy.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\JavaScript\webrtc.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"w2u006bvqy"},{"Name":"integrity","Value":"sha256-uB\u002BeXdJeYBj/zZ0S/7ZcTMqUcx5DGUXkVZS3LTFaD6U="},{"Name":"label","Value":"_content/VoipBackend/JavaScript/webrtc.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3113"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022uB\u002BeXdJeYBj/zZ0S/7ZcTMqUcx5DGUXkVZS3LTFaD6U=\u0022"},{"Name":"Last-Modified","Value":"Fri, 27 Mar 2026 07:00:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/register.98s9hxb0lj.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\register.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"98s9hxb0lj"},{"Name":"integrity","Value":"sha256-KXwAO/ErzihBlgDduBhiCcjXF4ajF2O4eigfW2VG1t4="},{"Name":"label","Value":"_content/VoipBackend/register.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"629"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022KXwAO/ErzihBlgDduBhiCcjXF4ajF2O4eigfW2VG1t4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 21:00:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/VoipBackend/register.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\register.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-KXwAO/ErzihBlgDduBhiCcjXF4ajF2O4eigfW2VG1t4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"629"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022KXwAO/ErzihBlgDduBhiCcjXF4ajF2O4eigfW2VG1t4=\u0022"},{"Name":"Last-Modified","Value":"Sat, 28 Mar 2026 21:00:52 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>
