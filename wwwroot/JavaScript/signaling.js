@@ -35,8 +35,12 @@ connection.on("ReceiveIceCandidate", async (candidate) => {
     await state.transport?.handleIceCandidate(candidate);
 });
 
-connection.on("UpdateFriendRequestList", friendRequests => {
+connection.on("FriendRequestListUpdated", friendRequests => {
     UI.renderFriendRequestList(friendRequests);
+});
+
+connection.on("FriendsListUpdated", () => {
+    UI.renderFriendsList();
 });
 
 //Start connection
@@ -48,6 +52,8 @@ export async function startConnection() {
     
     console.log("Fetching friend requests...");
     Friend.getFriendRequests();
+
+    UI.renderOnelineFriendsList();
 
     state.appState = "connected";
 }

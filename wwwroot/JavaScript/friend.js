@@ -18,7 +18,8 @@ export async function addFriend(){
             alert("Friend request sent!");
         }
         else{
-            alert("Failed to send friend request.");
+            const errorText = await res.text();
+            alert(errorText);
         }
     }
     else{
@@ -39,24 +40,26 @@ export async function getFriendRequests(){
         UI.renderFriendRequestList(friendRequests);
     }
     else{
-        alert("Failed to fetch friend requests.");
+        const errorText = await res.text();
+        alert(errorText);
     }
 }
 
-export function acceptFriendRequest(requestId){
-    return fetch(`/friend/request/${requestId}/accept`, {
+export async function acceptFriendRequest(requestId){
+    const res = await fetch(`/friend/request/${requestId}/accept`, {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`
         }
-    }).then(res => {
-        if(res.ok){
-            alert("Friend request accepted!");
-        }
-        else{
-            alert("Failed to accept friend request.");
-        }
     });
+
+    if(res.ok){
+        alert("Friend request accepted!");
+    }
+    else{
+        const errorText = await res.text();
+        alert(errorText);
+    }
 }
 
 export async function rejectFriendRequest(requestId){
@@ -71,6 +74,43 @@ export async function rejectFriendRequest(requestId){
         alert("Friend request rejected.");
     }
     else{
-        alert("Failed to reject friend request.");
+        const errorText = await res.text();
+        alert(errorText);
+    }
+}
+
+export async function removeFriend(username){
+    const res = await fetch(`/friend/${username}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+
+    if(res.ok){
+        alert("Friend removed.");
+    }
+    else{
+        const errorText = await res.text();
+        alert(res.status + ": " + errorText);
+    }
+}
+
+export async function getFriends(){
+    const res = await fetch("/friend", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+
+    if(res.ok){
+        const friends = await res.json();
+        return friends;
+    }
+    else{
+        const errorText = await res.text();
+        alert(errorText);
+        return [];
     }
 }

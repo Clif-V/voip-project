@@ -48,6 +48,26 @@ export function renderFriendRequestList(friendRequests) {
     });
 }
 
+export async function renderOnelineFriendsList() {
+    const friendsList = document.getElementById("friendsList");
+    friendsList.innerHTML = "";
+
+    const friends = await Friend.getFriends();
+
+    friends.forEach(friend => {
+        const item = document.createElement("li");
+        item.textContent = friend;
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.addEventListener("click", async () => {
+            await Friend.removeFriend(friend);
+            item.remove();
+        });
+        item.appendChild(removeBtn);
+        friendsList.appendChild(item);
+    });
+}
+
 
 export function setMicStatus(text) {
     document.getElementById("micStatus").textContent = text;

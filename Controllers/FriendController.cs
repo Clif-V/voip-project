@@ -21,7 +21,7 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
         var fromUsername = User.Identity?.Name;
         if (string.IsNullOrEmpty(fromUsername))
             return Unauthorized();
-        
+
         Console.WriteLine("From: " + fromUsername + ", To: " + input.ToUsername);
 
         var result = await _friendService.SendFriendRequestByUsername(fromUsername, input.ToUsername);
@@ -87,6 +87,7 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
     }
 
     [Authorize]
+    [HttpGet]
     public async Task<IActionResult> GetFriends()
     {
         var username = User.Identity?.Name;
@@ -95,5 +96,20 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
 
         var friends = await _friendService.GetFriendsForUser(username);
         return Ok(friends);
+    }
+
+    [Authorize]
+    [HttpDelete("{username}")]
+    public async Task<IActionResult> RemoveFriend(string username)
+    {
+        var currentUsername = User.Identity?.Name;
+        if (string.IsNullOrEmpty(currentUsername))
+            return Unauthorized();
+
+        var result = await _friendService.RemoveFriendship(currentUsername, username);
+        if (!result)
+            return BadRequest("Unable to remove friend.");
+
+        return NoContent();
     }
 }

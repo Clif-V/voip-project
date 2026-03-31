@@ -72,5 +72,34 @@ public class SignalingHub : Hub
         await Clients.OthersInGroup(roomId)
             .SendAsync("UserMuteChanged", Context.ConnectionId, isMuted);
     }
-    
+
+    public async Task BroadcastUserList()
+    {
+        var userList = users.Keys.ToList();
+        await Clients.All.SendAsync("UserListUpdated", userList);
+    }
+
+    public override async Task OnConnectedAsync()
+    {
+        var username = Context.User?.Identity?.Name;
+        if (!string.IsNullOrEmpty(username))
+        {
+            users[username] = Context.ConnectionId;
+            connections[Context.ConnectionId] = username;
+            await BroadcastUserList();
+        }
+        await base.OnConnectedAsync();
+    }
+
+    public override async Task OnDisconnectedAsync(Exception? exception)
+    {
+        var username = Context.User?.Identity?.Name;
+        if (!string.IsNullOrEmpty(username))
+        {
+            users.TryRemove(username, out _);
+            connections.TryRemove(Context.ConnectionId, out _);
+            await BroadcastUserList();
+        }
+        await base.OnDisconnectedAsync(exception);
+    }
 }

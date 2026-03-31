@@ -109,6 +109,7 @@ namespace VoipBackend.Services
             if (user == null) return null;
 
             var friendRequest = await _context.FriendRequests
+                .Include(fr => fr.FromUser)
                 .FirstOrDefaultAsync(fr => fr.Id == requestId && fr.ToUserId == user.Id);
 
             Console.WriteLine("Friend request found: " + (friendRequest != null));
@@ -162,6 +163,25 @@ namespace VoipBackend.Services
                     (f.User1Id == user2.Id && f.User2Id == user1.Id));
 
             return friendship != null;
+        }
+
+        public async Task<bool> RemoveFriendship(string username1, string username2)
+        {
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username1.ToLower());
+            var user2 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username2.ToLower());
+
+            if (user1 == null || user2 == null) return false;
+
+            var friendship = await _context.Friendships
+                .FirstOrDefaultAsync(f =>
+                    (f.User1Id == user1.Id && f.User2Id == user2.Id) ||
+                    (f.User1Id == user2.Id && f.User2Id == user1.Id));
+
+            if (friendship == null) return false;
+
+            _context.Friendships.Remove(friendship);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
