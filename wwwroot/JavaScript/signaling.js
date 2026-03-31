@@ -1,5 +1,6 @@
 import { state } from "./state.js";
 import * as UI from "./ui.js";
+import * as Friend from "./friend.js";
 
 export const connection = new signalR.HubConnectionBuilder()
     .withUrl("/signal", {
@@ -34,9 +35,8 @@ connection.on("ReceiveIceCandidate", async (candidate) => {
     await state.transport?.handleIceCandidate(candidate);
 });
 
-//User list
-connection.on("UserListUpdated", users => {
-    UI.renderUserList(users);
+connection.on("UpdateFriendRequestList", friendRequests => {
+    UI.renderFriendRequestList(friendRequests);
 });
 
 //Start connection
@@ -45,6 +45,9 @@ export async function startConnection() {
 
     const username = localStorage.getItem("username");
     console.log(`Connected as: ${username}`);
+    
+    console.log("Fetching friend requests...");
+    Friend.getFriendRequests();
 
     state.appState = "connected";
 }

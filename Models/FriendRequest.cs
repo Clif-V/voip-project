@@ -6,5 +6,7 @@ namespace VoipBackend.Models
         public int FromUserId { get; set; }
         public int ToUserId { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public User? FromUser { get; set; }
+        public User? ToUser { get; set; }
     }
 }

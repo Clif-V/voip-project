@@ -16,23 +16,32 @@ namespace VoipBackend.Data
 
                 // Configure FriendRequest relationships
                 entity.HasMany(u => u.SentRequests)
-                    .WithOne()
+                    .WithOne(fr => fr.FromUser)
                     .HasForeignKey(fr => fr.FromUserId)
                     .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasMany(u => u.ReceivedRequests)
-                    .WithOne()
+                    .WithOne(fr => fr.ToUser)
                     .HasForeignKey(fr => fr.ToUserId)
                     .OnDelete(DeleteBehavior.Cascade);
+            });
+            modelBuilder.Entity<Friendship>(entity =>
+            {
+                entity.HasOne<User>()
+                .WithMany()
+                .HasForeignKey(f => f.User1Id)
+                .OnDelete(DeleteBehavior.Restrict);
 
-                // Configure Friendship relationships
-                entity.HasMany(u => u.Friendships)
-                    .WithOne()
-                    .HasForeignKey(f => f.User1Id)
-                    .OnDelete(DeleteBehavior.Cascade);
+                entity
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(f => f.User2Id)
+                .OnDelete(DeleteBehavior.Restrict);
             });
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<FriendRequest> FriendRequests { get; set; }
+        public DbSet<Friendship> Friendships { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

@@ -1,6 +1,7 @@
 using VoipBackend.Data;
 using VoipBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 
 namespace VoipBackend.Services
 {

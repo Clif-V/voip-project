@@ -1,12 +1,19 @@
 using System.Collections.Concurrent;
 using Microsoft.AspNetCore.SignalR;
+using VoipBackend.Services;
 
 namespace VoipBackend.Hubs;
 
 public class SignalingHub : Hub
 {
-    static ConcurrentDictionary<string, string> users = new();           // username → connectionId
-    static ConcurrentDictionary<string, string> connections = new();     // connectionId → username
+    private readonly AuthService _authService;
+
+    public SignalingHub(AuthService authService)
+    {
+        _authService = authService;
+    }
+    public static ConcurrentDictionary<string, string> users = new();           // username → connectionId
+    public static ConcurrentDictionary<string, string> connections = new();     // connectionId → username
 
     public async Task JoinRoom(string roomId)
     {
@@ -65,33 +72,5 @@ public class SignalingHub : Hub
         await Clients.OthersInGroup(roomId)
             .SendAsync("UserMuteChanged", Context.ConnectionId, isMuted);
     }
-
-    async Task BroadcastUserList()
-    {
-        var userList = users.Keys.ToList();
-
-        await Clients.All.SendAsync("UserListUpdated", userList);
-    }
-
-    public override async Task OnDisconnectedAsync(Exception? exception)
-    {
-        if (connections.TryRemove(Context.ConnectionId, out var username))
-        {
-            users.TryRemove(username, out _);
-            Console.WriteLine($"{username} disconnected");
-
-            await BroadcastUserList();
-        }
-
-        await base.OnDisconnectedAsync(exception);
-    }
-
-    public override Task OnConnectedAsync()
-    {
-        var username = Context.User?.Identity?.Name;
-
-        Console.WriteLine($"connected: {username}");
-
-        return base.OnConnectedAsync();
-    }
+    
 }

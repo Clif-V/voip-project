@@ -20,13 +20,23 @@
         Remote user state unknown
         </div>
 
-        <input id ="p2p" name="transportMode" type="radio" value="p2p">
-        <label for="p2p">P2P</label>
-        <input id ="sfu" name="transportMode" type="radio" value="sfu">
-        <label for="sfu">SFU</label>
+        <div>
+            <input id ="p2p" name="transportMode" type="radio" value="p2p">
+            <label for="p2p">P2P</label>
+            <input id ="sfu" name="transportMode" type="radio" value="sfu">
+            <label for="sfu">SFU</label>
+        </div>
 
-        <h3>Online Users</h3>
-        <div id="userList"></div>
+        <div>
+            <input id="usernameInput" type="text" placeholder="Username">
+            <button id="addFriendBtn">Add Friend</button>
+        </div>
+
+        <h2>Incoming Friend Requests</h2>
+        <ul id="friendRequestList"></ul>
+
+        <h2>Outgoing Friend Requests</h2>
+        <ul id="outgoingFriendRequestList"></ul>
 
         <div id="incomingCall" style="display:none;">
             <p id="callerText">Incoming call...</p>

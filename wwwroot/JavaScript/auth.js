@@ -33,23 +33,6 @@ export async function login() {
     showApp();
 }
 
-export async function logout() {
-    Signaling.connection.stop();
-
-    console.log(state.localStream);
-
-    await RTC.endCall();
-
-    if (state.localStream) {
-        state.localStream.getTracks().forEach(track => track.stop());
-    }
-
-    localStorage.removeItem("username");
-    localStorage.removeItem("token");
-
-    showLogin();
-}
-
 export async function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -73,6 +56,23 @@ export async function register() {
 
     alert("Registered! Now login.");
     window.location.href = "index.html";
+}
+
+export async function logout() {
+    Signaling.connection.stop();
+
+    console.log(state.localStream);
+
+    await RTC.endCall();
+
+    if (state.localStream) {
+        state.localStream.getTracks().forEach(track => track.stop());
+    }
+
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+
+    showLogin();
 }
 
 export function showLogin(){

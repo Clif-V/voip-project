@@ -4,6 +4,7 @@ import * as Audio from "./audio.js";
 import * as WebRTC from "./webrtc.js";
 import * as Auth from "./auth.js";
 import * as Signaling from "./signaling.js";
+import * as Friend from "./friend.js";
 
 // Redirect to login if not authenticated
 if (!localStorage.getItem("token")) {
@@ -17,6 +18,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 const acceptCallBtn = document.getElementById("acceptCallBtn");
 const rejectCallBtn = document.getElementById("rejectCallBtn");
 const transportRadios = document.querySelectorAll('input[name="transportMode"]');
+const addFriendBtn = document.getElementById("addFriendBtn");
 
 window.onload = () => {
     if(localStorage.getItem("transportMode")){
@@ -51,6 +53,11 @@ rejectCallBtn.addEventListener("click", async () => {
     await WebRTC.rejectCall();
     UI.updateUI();
 });
+
+addFriendBtn.addEventListener("click", async () => {
+    await Friend.addFriend();
+});
+
 
 //Connect / Disconnect / End Call
 connectBtn.addEventListener("click", async () => {

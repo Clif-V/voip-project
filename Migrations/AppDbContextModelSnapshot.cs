@@ -38,7 +38,7 @@ namespace VoipBackend.Migrations
 
                     b.HasIndex("ToUserId");
 
-                    b.ToTable("FriendRequest");
+                    b.ToTable("FriendRequests");
                 });
 
             modelBuilder.Entity("VoipBackend.Models.Friendship", b =>
@@ -56,11 +56,18 @@ namespace VoipBackend.Migrations
                     b.Property<int>("User2Id")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("User1Id");
 
-                    b.ToTable("Friendship");
+                    b.HasIndex("User2Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Friendships");
                 });
 
             modelBuilder.Entity("VoipBackend.Models.User", b =>
@@ -96,26 +103,40 @@ namespace VoipBackend.Migrations
 
             modelBuilder.Entity("VoipBackend.Models.FriendRequest", b =>
                 {
-                    b.HasOne("VoipBackend.Models.User", null)
+                    b.HasOne("VoipBackend.Models.User", "FromUser")
                         .WithMany("SentRequests")
                         .HasForeignKey("FromUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VoipBackend.Models.User", null)
+                    b.HasOne("VoipBackend.Models.User", "ToUser")
                         .WithMany("ReceivedRequests")
                         .HasForeignKey("ToUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("ToUser");
                 });
 
             modelBuilder.Entity("VoipBackend.Models.Friendship", b =>
                 {
                     b.HasOne("VoipBackend.Models.User", null)
-                        .WithMany("Friendships")
+                        .WithMany()
                         .HasForeignKey("User1Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("VoipBackend.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("User2Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VoipBackend.Models.User", null)
+                        .WithMany("Friendships")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("VoipBackend.Models.User", b =>

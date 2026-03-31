@@ -1,5 +1,6 @@
 import { state } from "./state.js";
 import * as WebRTC from "./webrtc.js";
+import * as Friend from "./friend.js";
 
 export function updateUI() {
     const btn = document.getElementById("connectBtn");
@@ -9,23 +10,44 @@ export function updateUI() {
     if (state.appState === "in-call") btn.textContent = "End Call";
 }
 
-export function renderUserList(users) {
-    const container = document.getElementById("userList");
-    container.innerHTML = "";
+export function renderFriendRequestList(friendRequests) {
+    const incomingList = document.getElementById("friendRequestList");
+    incomingList.innerHTML = "";
+    
+    const outgoingList = document.getElementById("outgoingFriendRequestList");
+    outgoingList.innerHTML = "";
 
-    const currentUser = localStorage.getItem("username");
+    friendRequests.incoming?.forEach(request => {
+        const item = document.createElement("li");
+        item.textContent = `Incoming: ${request.from}`;
+        incomingList.appendChild(item);
 
-    users.forEach(user => {
-        if (user === currentUser) return;
+        const acceptBtn = document.createElement("button");
+        acceptBtn.textContent = "Accept";
+        acceptBtn.addEventListener("click", async () => {
+            await Friend.acceptFriendRequest(request.id);
+        });
+        item.appendChild(acceptBtn);
 
-        const btn = document.createElement("button");
-        btn.textContent = user;
 
-        btn.onclick = () => WebRTC.startCall(user);
+        const rejectBtn = document.createElement("button");
+        rejectBtn.textContent = "Reject";
+        rejectBtn.addEventListener("click", async () => {
+            await Friend.rejectFriendRequest(request.id);
+            rejectBtn.remove();
+            acceptBtn.remove();
+            item.remove();
+        });
+        item.appendChild(rejectBtn);
+    });
 
-        container.appendChild(btn);
+    friendRequests.outgoing?.forEach(request => {
+        const item = document.createElement("li");
+        item.textContent = `Outgoing: ${request.to}`;
+        outgoingList.appendChild(item);
     });
 }
+
 
 export function setMicStatus(text) {
     document.getElementById("micStatus").textContent = text;

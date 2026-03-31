@@ -6,20 +6,18 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
+using VoipBackend.Hubs;
 
 namespace VoipBackend.Controllers
 {
     [ApiController]
     [Route("auth")]
     [Route("users")]
-    public class AuthController : ControllerBase
+    public class AuthController(AuthService auth, IHubContext<SignalingHub> hubContext) : ControllerBase
     {
-        private readonly AuthService _auth;
-
-        public AuthController(AuthService auth)
-        {
-            _auth = auth;
-        }
+        private readonly AuthService _auth = auth;
+        private readonly IHubContext<SignalingHub> _hubContext = hubContext;
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthRequestRegister input)
@@ -88,6 +86,7 @@ namespace VoipBackend.Controllers
 
             return Ok(new {username, email});
         }
+
 
         [Authorize]
         [HttpDelete("delete")]
