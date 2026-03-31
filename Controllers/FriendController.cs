@@ -4,6 +4,7 @@ using VoipBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using VoipBackend.Hubs;
+using Microsoft.VisualBasic;
 
 
 namespace VoipProject.Controllers;
@@ -41,6 +42,13 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
                 .SendAsync("FriendRequestListUpdated", friendRequests);
         }
 
+        if(SignalingHub.users.TryGetValue(fromUsername, out var fromConnectionId))
+        {
+            var friendRequests = await _friendService.GetFriendRequestsForUser(fromUsername);
+            await _hubContext.Clients.Client(fromConnectionId)
+                .SendAsync("FriendRequestListUpdated", friendRequests);
+        }
+
         return Ok(new { username = result.Username });
     }
 
@@ -64,9 +72,27 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
         if (string.IsNullOrEmpty(username))
             return Unauthorized();
 
+        var request = await _friendService.GetFriendRequestById(requestId);
+        var fromUsername = request?.FromUser?.Username;
+
         var result = await _friendService.DeleteFriendRequest(username, requestId);
         if (!result)
             return BadRequest("Unable to delete friend request.");
+
+        // Notify both users about the updated friend request list
+        if (SignalingHub.users.TryGetValue(username, out var connectionId))
+        {
+            var friendRequests = await _friendService.GetFriendRequestsForUser(username);
+            await _hubContext.Clients.Client(connectionId)
+                .SendAsync("FriendRequestListUpdated", friendRequests);
+        }
+
+        if (!string.IsNullOrEmpty(fromUsername) && SignalingHub.users.TryGetValue(fromUsername, out var fromConnectionId))
+        {
+            var friendRequests = await _friendService.GetFriendRequestsForUser(fromUsername);
+            await _hubContext.Clients.Client(fromConnectionId)
+                .SendAsync("FriendRequestListUpdated", friendRequests);
+        }
 
         return Ok();
     }
@@ -79,9 +105,31 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
         if (string.IsNullOrEmpty(username))
             return Unauthorized();
 
+        var request = await _friendService.GetFriendRequestById(requestId);
+        var fromUsername = request?.FromUser?.Username;
+
         var result = await _friendService.AcceptFriendRequest(username, requestId);
         if (result == null)
             return BadRequest("Unable to accept friend request.");
+
+        // Notify both users about the updated friend request list
+        if (SignalingHub.users.TryGetValue(username, out var connectionId))
+        {
+            var friendRequests = await _friendService.GetFriendRequestsForUser(username);
+            await _hubContext.Clients.Client(connectionId)
+                .SendAsync("FriendRequestListUpdated", friendRequests);
+            await _hubContext.Clients.Client(connectionId)
+                .SendAsync("FriendsListUpdated", await _friendService.GetFriendsForUser(username));
+        }
+
+        if (!string.IsNullOrEmpty(fromUsername) && SignalingHub.users.TryGetValue(fromUsername, out var fromConnectionId))
+        {
+            var friendRequests = await _friendService.GetFriendRequestsForUser(fromUsername);
+            await _hubContext.Clients.Client(fromConnectionId)
+                .SendAsync("FriendRequestListUpdated", friendRequests);
+            await _hubContext.Clients.Client(fromConnectionId)
+                .SendAsync("FriendsListUpdated", await _friendService.GetFriendsForUser(fromUsername));
+        }
 
         return Ok(new { username = result.Username });
     }
@@ -109,6 +157,22 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
         var result = await _friendService.RemoveFriendship(currentUsername, username);
         if (!result)
             return BadRequest("Unable to remove friend.");
+        
+
+        // Notify both users about the updated friends list
+        if (SignalingHub.users.TryGetValue(username, out var connectionId))
+        {
+            var friends = await _friendService.GetFriendsForUser(username);
+            await _hubContext.Clients.Client(connectionId)
+                .SendAsync("FriendsListUpdated", friends);
+        }
+
+        if (SignalingHub.users.TryGetValue(currentUsername, out var currentConnectionId))
+        {
+            var friends = await _friendService.GetFriendsForUser(currentUsername);
+            await _hubContext.Clients.Client(currentConnectionId)
+                .SendAsync("FriendsListUpdated", friends);
+        }
 
         return NoContent();
     }

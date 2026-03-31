@@ -1,7 +1,6 @@
 using VoipBackend.Data;
 using VoipBackend.Models;
 using Microsoft.EntityFrameworkCore;
-using Azure.Core;
 
 namespace VoipBackend.Services
 {
@@ -33,6 +32,13 @@ namespace VoipBackend.Services
                 .ToListAsync();
 
             return new { incoming, outgoing };
+        }
+
+        public async Task<FriendRequest?> GetFriendRequestById(int id){
+            var request = await _context.FriendRequests
+                .Include(fr => fr.FromUser)
+                .FirstOrDefaultAsync(fr => fr.Id == id);
+            return request;
         }
 
         public async Task<User?> SendFriendRequestByUsername(string fromUsername, string toUsername)

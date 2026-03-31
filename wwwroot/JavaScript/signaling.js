@@ -40,7 +40,7 @@ connection.on("FriendRequestListUpdated", friendRequests => {
 });
 
 connection.on("FriendsListUpdated", () => {
-    UI.renderFriendsList();
+    UI.renderOnlineFriendsList();
 });
 
 //Start connection
@@ -53,7 +53,7 @@ export async function startConnection() {
     console.log("Fetching friend requests...");
     Friend.getFriendRequests();
 
-    UI.renderOnelineFriendsList();
+    UI.renderOnlineFriendsList();
 
     state.appState = "connected";
 }

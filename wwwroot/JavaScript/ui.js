@@ -48,7 +48,7 @@ export function renderFriendRequestList(friendRequests) {
     });
 }
 
-export async function renderOnelineFriendsList() {
+export async function renderOnlineFriendsList() {
     const friendsList = document.getElementById("friendsList");
     friendsList.innerHTML = "";
 
