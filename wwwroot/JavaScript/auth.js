@@ -75,6 +75,20 @@ export async function logout() {
     showLogin();
 }
 
+export async function verifySession() {
+    const token = localStorage.getItem("token");
+    if (!token) return false;
+    const res = await fetch("/auth/me", {
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+    if (!res.ok) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("username");
+        return false;
+    }
+    return true;
+}
+
 export function showLogin(){
     window.location.href = "index.html";
 }

@@ -56,7 +56,16 @@ export async function renderOnlineFriendsList() {
 
     friends.forEach(friend => {
         const item = document.createElement("li");
+
+        const button = document.createElement("button");
+        button.textContent = "Call";
+        button.addEventListener("click", async () => {
+            await WebRTC.startCall(friend);
+            updateUI();
+        });
+
         item.textContent = friend;
+
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
         removeBtn.addEventListener("click", async () => {
@@ -64,8 +73,17 @@ export async function renderOnlineFriendsList() {
             item.remove();
         });
         item.appendChild(removeBtn);
+        item.appendChild(button);
         friendsList.appendChild(item);
     });
+}
+
+export function hideFriends() {
+    document.getElementById("friendsSection").style.display = "none";
+}
+
+export function showFriends() {
+    document.getElementById("friendsSection").style.display = "block";
 }
 
 

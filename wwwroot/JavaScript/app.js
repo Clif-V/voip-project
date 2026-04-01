@@ -20,7 +20,11 @@ const rejectCallBtn = document.getElementById("rejectCallBtn");
 const transportRadios = document.querySelectorAll('input[name="transportMode"]');
 const addFriendBtn = document.getElementById("addFriendBtn");
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    if (!await Auth.verifySession()){
+        window.location.href = "index.html";
+    }
+
     if(localStorage.getItem("transportMode")){
         state.transportMode = localStorage.getItem("transportMode") || "p2p";
         document.querySelector(`input[name="transportMode"][value="${state.transportMode}"]`).checked = true;
@@ -29,7 +33,7 @@ window.onload = () => {
         state.transportMode = "p2p";
         document.getElementById("p2p").checked = true;
     }
-}
+});
 
 transportRadios.forEach(radio => {
     radio.addEventListener("change", () => {

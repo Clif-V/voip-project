@@ -54,6 +54,7 @@ export async function startConnection() {
     Friend.getFriendRequests();
 
     UI.renderOnlineFriendsList();
+    UI.showFriends();
 
     state.appState = "connected";
 }
@@ -73,6 +74,8 @@ export async function disconnect() {
         state.localStream.getTracks().forEach(t => t.stop());
         state.localStream = null;
     }
+
+    UI.hideFriends();
 
     state.appState = "disconnected";
 }

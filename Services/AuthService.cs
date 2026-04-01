@@ -33,6 +33,11 @@ namespace VoipBackend.Services
             return true;
         }
 
+        public async Task<User?> findUserByUsername(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+        }
+
         public async Task<User?> findUser(string identifier, string password)
         {
             if (identifier.Contains("@"))

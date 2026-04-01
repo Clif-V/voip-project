@@ -27,24 +27,26 @@
             <label for="sfu">SFU</label>
         </div>
 
-        <div>
-            <input id="usernameInput" type="text" placeholder="Username">
-            <button id="addFriendBtn">Add Friend</button>
-        </div>
+        <div id="friendsSection" style="display: none;">
+            <div>
+                <input id="usernameInput" type="text" placeholder="Username">
+                <button id="addFriendBtn">Add Friend</button>
+            </div>
 
-        <h2>Incoming Friend Requests</h2>
-        <ul id="friendRequestList"></ul>
+            <h2>Incoming Friend Requests</h2>
+            <ul id="friendRequestList"></ul>
 
-        <h2>Outgoing Friend Requests</h2>
-        <ul id="outgoingFriendRequestList"></ul>
+            <h2>Outgoing Friend Requests</h2>
+            <ul id="outgoingFriendRequestList"></ul>
 
-        <h2>Friends List</h2>
-        <ul id="friendsList"></ul>
+            <h2>Friends List</h2>
+            <ul id="friendsList"></ul>
 
-        <div id="incomingCall" style="display:none;">
-            <p id="callerText">Incoming call...</p>
-            <button id="acceptCallBtn">Accept</button>
-            <button id="rejectCallBtn">Reject</button>
+            <div id="incomingCall" style="display:none;">
+                <p id="callerText">Incoming call...</p>
+                <button id="acceptCallBtn">Accept</button>
+                <button id="rejectCallBtn">Reject</button>
+            </div>
         </div>
     </div>
 </body>

@@ -82,9 +82,14 @@ namespace VoipBackend.Controllers
         public async Task<IActionResult> Me()
         {
             var username = User.Identity?.Name;
-            var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            if (string.IsNullOrEmpty(username))
+                return Unauthorized();
 
-            return Ok(new {username, email});
+            var user = await _auth.findUserByUsername(username);
+            if (user == null)
+                return Unauthorized("User no longer exists.");
+
+            return Ok(new { username = user.Username, email = user.Email });
         }
 
 
