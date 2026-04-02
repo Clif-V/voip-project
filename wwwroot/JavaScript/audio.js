@@ -16,6 +16,31 @@ export function setupAudioAnalysis(stream) {
     detectVolume();
 }
 
+export async function startAudioStream(){
+    if (state.localStream != null)
+    {
+        console.log("Audio stream already active");
+        return;
+    }
+
+    try {
+        state.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        UI.setMicStatus("Mic: Access granted");
+        setupAudioAnalysis(state.localStream);
+    } catch (err) {
+        UI.setMicStatus("Mic: Access denied");
+        console.error(err);
+    }
+}
+
+export async function stopAudioStream() {
+    if (state.localStream) {
+        state.localStream.getTracks().forEach(t => t.stop());
+        state.localStream = null;
+        UI.setMicStatus("Mic: Stopped");
+    }
+}
+
 function detectVolume() {
     if (!state.analyser) return;
 
@@ -43,6 +68,7 @@ export function toggleMicrophoneMute() {
     UI.setMicStatus(state.isMuted ? "Mic: Muted" : "Mic: Unmuted");
 
     if (state.currentTargetUser) {
+        console.log("Sending mute state:", state.isMuted);
         connection.invoke("SendMuteState", state.currentTargetUser, state.isMuted);
     }
 }

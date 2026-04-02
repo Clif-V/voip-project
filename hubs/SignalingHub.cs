@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using Microsoft.AspNetCore.SignalR;
+using VoipBackend.Models;
 using VoipBackend.Services;
 
 namespace VoipBackend.Hubs;
@@ -67,10 +68,15 @@ public class SignalingHub : Hub
         }
     }
 
-    public async Task SendMuteState(string roomId, bool isMuted)
+    public async Task SendMuteState(string targetUsername, bool isMuted)
     {
-        await Clients.OthersInGroup(roomId)
-            .SendAsync("UserMuteChanged", Context.ConnectionId, isMuted);
+        var callerUsername = users.FirstOrDefault(x => x.Value == Context.ConnectionId).Key;
+
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            await Clients.Client(connectionId)
+                .SendAsync("UserMuteChanged", callerUsername, isMuted);
+        }
     }
 
     public async Task BroadcastUserList()
@@ -101,5 +107,23 @@ public class SignalingHub : Hub
             await BroadcastUserList();
         }
         await base.OnDisconnectedAsync(exception);
+    }
+
+    public Task NotifyCallEnded(string targetUsername)
+    {
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            return Clients.Client(connectionId).SendAsync("CallEnded");
+        }
+        return Task.CompletedTask;
+    }
+
+    public Task RejectCallToUser(string targetUsername)
+    {
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            return Clients.Client(connectionId).SendAsync("CallRejected");
+        }
+        return Task.CompletedTask;
     }
 }

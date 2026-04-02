@@ -1,6 +1,7 @@
 import { state } from "./state.js";
 import * as UI from "./ui.js";
 import * as Friend from "./friend.js";
+import * as Audio from "./audio.js";
 
 export const connection = new signalR.HubConnectionBuilder()
     .withUrl("/signal", {
@@ -41,6 +42,42 @@ connection.on("FriendRequestListUpdated", friendRequests => {
 
 connection.on("FriendsListUpdated", () => {
     UI.renderOnlineFriendsList();
+});
+
+connection.on("ServerShutdown", async () => {
+    if (connection.state !== signalR.HubConnectionState.Disconnected) {
+        await connection.stop();
+    }
+    state.appState = "disconnected";
+});
+
+connection.on("CallEnded", async () => {
+    if (state.transport) {
+        await state.transport.close();
+        state.transport = null;
+    }
+    state.currentTargetUser = null;
+    UI.hideIncomingCall();
+
+    if (state.appState === "in-call") {
+        state.appState = "connected";
+        UI.updateUI();
+    }
+});
+
+connection.on("CallRejected", async () => {
+    UI.hideIncomingCall();
+    UI.showAlert("Call rejected by the user.");
+    state.pendingOffer = null;
+    state.currentTargetUser = null;
+    if(state.localStream) await Audio.stopAudioStream();
+});
+
+connection.on("UserMuteChanged", (userID, isMuted) => {
+    console.log(`User ${userID} mute state changed: ${isMuted}`);
+    if (state.currentTargetUser === userID) {
+        UI.setRemoteMicStatus(isMuted);
+    }
 });
 
 //Start connection

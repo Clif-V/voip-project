@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VoIP Test</title>
+    <title>VoIP</title>
+    <link rel="stylesheet" href="./CSS/app.css">
 </head>
 <body>
     <div id="app">
-        <h1>VoIP Test</h1>
-        <button id="connectBtn">Connect</button>
 
-        <audio id="remoteAudio" autoplay></audio>
-
-        <button id="micBtn">Enable Microphone</button>
-        <button id="micToggle">Toggle Microphone</button>
-        <button id="logoutBtn">Logout</button>
-        <p id="micStatus">Mic: Not enabled</p>
-        <p id="volumeLevel">Volume: 0</p>
-
-        <div id="remoteMuteIndicator">
-        Remote user state unknown
-        </div>
-
-        <div>
-            <input id ="p2p" name="transportMode" type="radio" value="p2p">
-            <label for="p2p">P2P</label>
-            <input id ="sfu" name="transportMode" type="radio" value="sfu">
-            <label for="sfu">SFU</label>
-        </div>
-
-        <div id="friendsSection" style="display: none;">
-            <div>
-                <input id="usernameInput" type="text" placeholder="Username">
-                <button id="addFriendBtn">Add Friend</button>
+        <!-- Left sidebar -->
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <span id="usernameDisplay">Loading...</span>
+                <button id="logoutBtn">Logout</button>
             </div>
 
-            <h2>Incoming Friend Requests</h2>
-            <ul id="friendRequestList"></ul>
+            <div id="addFriendSection">
+                <input id="usernameInput" type="text" placeholder="Add friend by username">
+                <button id="addFriendBtn">Add</button>
+            </div>
 
-            <h2>Outgoing Friend Requests</h2>
-            <ul id="outgoingFriendRequestList"></ul>
+            <div id="requestsSection">
+                <button id="toggleRequestsBtn">
+                    Friend Requests
+                    <span id="requestBadge"></span>
+                </button>
+                <div id="requestsDropdown" style="display:none;">
+                    <h4>Incoming</h4>
+                    <ul id="friendRequestList"></ul>
+                    <h4>Outgoing</h4>
+                    <ul id="outgoingFriendRequestList"></ul>
+                </div>
+            </div>
 
-            <h2>Friends List</h2>
-            <ul id="friendsList"></ul>
+            <div id="friendsListSection">
+                <div id="friendsListHeader">Friends</div>
+                <ul id="friendsList"></ul>
+            </div>
+        </aside>
 
-            <div id="incomingCall" style="display:none;">
-                <p id="callerText">Incoming call...</p>
+        <!-- Main panel -->
+        <main id="mainPanel">
+
+            <div id="noSelectionView">
+                <p>Select a friend to chat or call</p>
+            </div>
+
+            <div id="friendView">
+                <div id="friendViewHeader">
+                    <span id="selectedFriendName"></span>
+                    <div class="transport-selector">
+                        <label><input id="p2p" name="transportMode" type="radio" value="p2p"> P2P</label>
+                        <label><input id="sfu" name="transportMode" type="radio" value="sfu"> SFU</label>
+                    </div>
+                    <button id="callBtn">Call</button>
+                    <button id="endCallBtn">End Call</button>
+                </div>
+
+                <div id="callControls">
+                    <button id="micBtn">Enable Mic</button>
+                    <button id="micToggle">Mute / Unmute</button>
+                    <p id="micStatus">Mic: Not enabled</p>
+                    <p id="volumeLevel">Volume: 0</p>
+                    <div id="remoteMicStatus">Remote user state unknown</div>
+                </div>
+
+                <div id="messageArea">
+                    <p>Messaging coming soon...</p>
+                </div>
+            </div>
+
+            <!-- Incoming call overlay -->
+            <div id="incomingCall">
+                <p id="callerText">Incoming call…</p>
                 <button id="acceptCallBtn">Accept</button>
                 <button id="rejectCallBtn">Reject</button>
             </div>
-        </div>
+
+        </main>
     </div>
-</body>
+
+    <audio id="remoteAudio" autoplay></audio>
+
     <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
     <script type="module" src="../JavaScript/state.js"></script>
     <script type="module" src="../JavaScript/app.js"></script>
     <script type="module" src="../JavaScript/webrtc.js"></script>
     <script type="module" src="../JavaScript/ui.js"></script>
     <script type="module" src="../JavaScript/friend.js"></script>
+</body>
 </html>

@@ -1,5 +1,6 @@
 import { state } from "./state.js";
 import { connection } from "./signaling.js";
+import * as Audio from "./audio.js";
 
 class P2PTransport {
     constructor(targetUser) {
@@ -68,7 +69,8 @@ class SFUTransport {
 }
 
 export async function startCall(username) {
-    if (!state.localStream) return;
+
+    if (!state.localStream) await Audio.startAudioStream();
 
     state.currentTargetUser = username;
 
@@ -82,16 +84,18 @@ export async function startCall(username) {
     await state.transport.initialize(state.localStream);
     await state.transport.createAndSendOffer();
 
+    connection.invoke("SendMuteState", state.currentTargetUser, state.isMuted);
+
     state.appState = "in-call";
 }
 
 export async function acceptCall() {
-    if (!state.localStream) return;
+    if (!state.localStream) await Audio.startAudioStream();
 
     if (state.transportMode === "p2p") {
+        connection.invoke("SendMuteState", state.currentTargetUser, state.isMuted);
         state.transport = new P2PTransport(state.currentTargetUser);
     } else if (state.transportMode === "sfu") {
-        // Placeholder for SFU transport
         console.warn("SFU mode not implemented yet");
         return;
     }
@@ -102,11 +106,21 @@ export async function acceptCall() {
     state.appState = "in-call";
 }
 
+export async function rejectCall(){
+    state.pendingOffer = null;
+    state.currentTargetUser = null;
+    UI.hideIncomingCall();
+    connection.invoke("RejectCallToUser", state.currentTargetUser);
+}
+
 export async function endCall() {
     if (state.transport) {
+        await connection.invoke("NotifyCallEnded", state.currentTargetUser);
         await state.transport.close();
         state.transport = null;
+        await Audio.stopAudioStream();
     }
 
+    state.currentTargetUser = null;
     state.appState = "connected";
 }

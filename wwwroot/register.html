@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/register.css">
     <title>Register</title>
 </head>
 <body>
-    <div>
+    <div class="auth-card">
+        <h2>VoIP</h2>
         <input id="username" type="text" placeholder="Username">
-    </div>
-    <div>
         <input id="email" type="email" placeholder="Email">
-    </div>
-    <div>
         <input id="password" type="password" placeholder="Password">
-    </div>
-    <div>
         <button id="registerBtn">Register</button>
+        <p class="auth-footer">Already have an account? <a href="index.html">Login</a></p>
     </div>
-</body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
     <script type="module" src="JavaScript/register.js"></script>
+</body>
 </html>

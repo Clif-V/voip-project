@@ -5,6 +5,7 @@ using VoipBackend.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,5 +83,11 @@ else
 {
     app.UseStaticFiles();
 }
+
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    var hubContext = app.Services.GetRequiredService<IHubContext<SignalingHub>>();
+    hubContext.Clients.All.SendAsync("ServerShutdown").GetAwaiter().GetResult();
+});
 
 app.Run();

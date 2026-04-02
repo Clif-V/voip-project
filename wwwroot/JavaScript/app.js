@@ -13,70 +13,86 @@ if (!localStorage.getItem("token")) {
 
 const micToggle = document.getElementById("micToggle");
 const micBtn = document.getElementById("micBtn");
-const connectBtn = document.getElementById("connectBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const acceptCallBtn = document.getElementById("acceptCallBtn");
 const rejectCallBtn = document.getElementById("rejectCallBtn");
 const transportRadios = document.querySelectorAll('input[name="transportMode"]');
 const addFriendBtn = document.getElementById("addFriendBtn");
+const callBtn = document.getElementById("callBtn");
+const endCallBtn = document.getElementById("endCallBtn");
+const toggleRequestsBtn = document.getElementById("toggleRequestsBtn");
 
 document.addEventListener("DOMContentLoaded", async () => {
-    if (!await Auth.verifySession()){
+    if (!await Auth.verifySession()) {
         window.location.href = "index.html";
+        return;
     }
 
-    if(localStorage.getItem("transportMode")){
-        state.transportMode = localStorage.getItem("transportMode") || "p2p";
-        document.querySelector(`input[name="transportMode"][value="${state.transportMode}"]`).checked = true;
-    }
-    else{
-        state.transportMode = "p2p";
-        document.getElementById("p2p").checked = true;
-    }
+    const username = localStorage.getItem("username");
+    document.getElementById("usernameDisplay").textContent = username || "User";
+
+    const savedMode = localStorage.getItem("transportMode") || "p2p";
+    state.transportMode = savedMode;
+    document.querySelector(`input[name="transportMode"][value="${savedMode}"]`).checked = true;
+
+    await Signaling.startConnection();
 });
 
 transportRadios.forEach(radio => {
     radio.addEventListener("change", () => {
         state.transportMode = document.querySelector('input[name="transportMode"]:checked').value;
         localStorage.setItem("transportMode", state.transportMode);
-
-        console.log("Transport mode set to:", state.transportMode);
     });
+});
+
+toggleRequestsBtn.addEventListener("click", () => {
+    const dropdown = document.getElementById("requestsDropdown");
+    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
 });
 
 logoutBtn.addEventListener("click", () => {
     Auth.logout();
 });
 
+callBtn.addEventListener("click", async () => {
+    if (state.selectedFriend) {
+
+        console.log("Starting call with", state.selectedFriend);
+        await WebRTC.startCall(state.selectedFriend);
+        UI.updateUI();
+    }
+});
+
 acceptCallBtn.addEventListener("click", async () => {
+    console.log("Accepting call from", state.currentTargetUser);
     await WebRTC.acceptCall();
+    UI.hideIncomingCall();
     UI.updateUI();
 });
 
-rejectCallBtn.addEventListener("click", async () => {
-    await WebRTC.rejectCall();
-    UI.updateUI();
+rejectCallBtn.addEventListener("click", () => {
+    console.log("Rejecting call from", state.currentTargetUser);
+    state.pendingOffer = null;
+    state.currentTargetUser = null;
+    UI.hideIncomingCall();
 });
 
 addFriendBtn.addEventListener("click", async () => {
     await Friend.addFriend();
 });
 
-
-//Connect / Disconnect / End Call
-connectBtn.addEventListener("click", async () => {
-    if (state.appState === "disconnected") {
-        await Signaling.startConnection();
-    } else if (state.appState === "connected") {
-        await Signaling.disconnect();
-    } else if (state.appState === "in-call") {
-        await WebRTC.endCall();
+callBtn.addEventListener("click", async () => {
+    if (state.selectedFriend) {
+        await WebRTC.startCall(state.selectedFriend);
+        UI.updateUI();
     }
+});
 
+endCallBtn.addEventListener("click", async () => {
+    await WebRTC.endCall();
     UI.updateUI();
 });
 
-//Enable mic
 micBtn.addEventListener("click", async () => {
     if (state.localStream) {
         console.log("Mic already active");
@@ -86,7 +102,6 @@ micBtn.addEventListener("click", async () => {
     try {
         state.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
         UI.setMicStatus("Mic: Access granted");
-
         Audio.setupAudioAnalysis(state.localStream);
     } catch (err) {
         UI.setMicStatus("Mic: Access denied");
@@ -94,7 +109,6 @@ micBtn.addEventListener("click", async () => {
     }
 });
 
-//Toggle mute
 micToggle.addEventListener("click", () => {
     Audio.toggleMicrophoneMute();
 });
