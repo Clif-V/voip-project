@@ -114,3 +114,30 @@ export async function getFriends(){
         return [];
     }
 }
+
+export async function sendMessage(toUser, message){
+    const res = await fetch(`/auth/publickey/${toUser}`,{
+        method: "GET" 
+    });
+
+    if(res.ok){
+        const { publicKey } = await res.json();
+
+        // Encrypt message with recipient's public key
+        const encryptedMessage = await encryptMessage(publicKey, message);
+
+        // Send encrypted message to server
+        await fetch("/friend/message", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({ ToUsername: toUser, Message: encryptedMessage })
+        });
+    }
+    else{
+        const errorText = await res.text();
+        alert(errorText);
+    }
+}

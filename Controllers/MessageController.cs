@@ -3,30 +3,40 @@ using VoipBackend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using VoipBackend.Hubs;
+using VoipBackend.Models;
 
 namespace VoipBackend.Controllers
 {
     [ApiController]
     [Route("message")]
-    public class MessageController(AuthService auth, IHubContext<SignalingHub> hubContext) : ControllerBase
+    public class MessageController(FriendService friendService, MessageService messageService, IHubContext<SignalingHub> hubContext) : ControllerBase
     {
-        private readonly AuthService _auth = auth;
-        private readonly MessageService _messageService;
+        private readonly FriendService _friendService = friendService;
+        private readonly MessageService _messageService = messageService;
         private readonly IHubContext<SignalingHub> _hubContext = hubContext;
 
         [Authorize]
-        [HttpPost()]
-        public async Task<IActionResult> SendMessage([FromBody] Message input)
+        [HttpPost("send")]
+        public async Task<IActionResult> SendMessage([FromBody] MessageRequest input)
         {
-            var content = input.Content;
-            var senderId = input.SenderId;
-            var conversationId = input.ConversationId;
+            var senderUsername = User.Identity?.Name;
+            if (string.IsNullOrEmpty(senderUsername)) return Unauthorized();
 
-            var message = await _messageService.AddMessage(content, senderId, conversationId);
+            var sender = await _friendService.GetUserByUsername(senderUsername);
+            var recipient = await _friendService.GetUserByUsername(input.ToUsername);
+            if (sender == null || recipient == null) return NotFound("User not found.");
 
-            if(message == null) return BadRequest("Failed to send message.");
+            var conversation = await _messageService.GetOrCreateConversation(sender.Id, recipient.Id);
+            var message = await _messageService.AddMessage(input.Message, sender.Id, conversation.Id);
+            if (message == null) return BadRequest("Failed to save message.");
 
-            return Ok(message.Timestamp);
+            if (SignalingHub.users.TryGetValue(input.ToUsername, out var recipientConnectionId))
+            {
+                await _hubContext.Clients.Client(recipientConnectionId)
+                    .SendAsync("ReceiveMessage", senderUsername, input.Message);
+            }
+
+            return Ok(new { conversationId = conversation.Id, messageId = message.Id });
         }
     }
 }

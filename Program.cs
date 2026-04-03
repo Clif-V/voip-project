@@ -17,6 +17,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<FriendService>();
+builder.Services.AddScoped<MessageService>();
 
 builder.Services.AddSignalR();
 

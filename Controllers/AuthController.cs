@@ -126,5 +126,16 @@ namespace VoipBackend.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("publickey/{username}")]
+        public async Task<IActionResult> GetPublicKey(string username) {
+            var user = await _auth.findUserByUsername(username);
+            if (user == null) return NotFound();
+
+            return Ok(new
+            {
+                publicKey = user.PublicKey
+            });
+        }
     }
 }

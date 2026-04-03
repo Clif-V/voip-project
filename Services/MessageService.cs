@@ -24,11 +24,31 @@ namespace VoipBackend.Services
             return conversation;
         }
 
+        public async Task<Conversation> GetOrCreateConversation(int userAId, int userBId)
+        {
+            // Look for an existing conversation that contains both users and no one else
+            var conversation = await _context.Conversations
+                .Include(c => c.Participants)
+                .Where(c => c.Participants.Any(p => p.UserId == userAId)
+                         && c.Participants.Any(p => p.UserId == userBId)
+                         && c.Participants.Count == 2)
+                .FirstOrDefaultAsync();
+
+            if (conversation != null) return conversation;
+
+            // Create a new conversation
+            conversation = new Conversation();
+            conversation.Participants.Add(new ConversationParticipant { UserId = userAId });
+            conversation.Participants.Add(new ConversationParticipant { UserId = userBId });
+
+            _context.Conversations.Add(conversation);
+            await _context.SaveChangesAsync();
+
+            return conversation;
+        }
+
         public async Task<Message?> AddMessage(string content, int senderId, int conversationId)
         {
-            var sender = await _context.Users.FirstOrDefaultAsync(u => u.Id == senderId);
-            if (sender == null) return null;
-
             var conversation = await _context.Conversations.FirstOrDefaultAsync(c => c.Id == conversationId);
             if (conversation == null) return null;
 
@@ -36,7 +56,7 @@ namespace VoipBackend.Services
             {
                 Content = content,
                 SenderId = senderId,
-                ConversationId = conversationId,
+                ConversationId = conversationId
             };
 
             _context.Messages.Add(message);

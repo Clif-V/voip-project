@@ -105,6 +105,15 @@ micBtn.addEventListener("click", async () => {
     }
 });
 
+sendMessageBtn.addEventListener("click", async () => {
+    const messageInput = document.getElementById("messageInput");
+    const message = messageInput.value.trim();
+    if (message && state.selectedFriend) {
+        await Friend.sendMessage(state.selectedFriend, message);
+        messageInput.value = "";
+    }
+});
+
 micToggle.addEventListener("click", () => {
     Audio.toggleMicrophoneMute();
 });
