@@ -25,3 +25,9 @@ loginBtn.addEventListener("click", async () => {
         alert("Login failed. Please check your credentials.");
     }
 });
+
+document.querySelectorAll("#password, #username").forEach(el => {
+    el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") loginBtn.click();
+    });
+});

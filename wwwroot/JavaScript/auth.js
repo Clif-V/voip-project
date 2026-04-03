@@ -20,7 +20,6 @@ export async function login() {
     });
 
     if (!res.ok) {
-        alert("Login failed");
         return false;
     }
 

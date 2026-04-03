@@ -16,6 +16,7 @@ const addFriendBtn = document.getElementById("addFriendBtn");
 const callBtn = document.getElementById("callBtn");
 const endCallBtn = document.getElementById("endCallBtn");
 const toggleRequestsBtn = document.getElementById("toggleRequestsBtn");
+const sendMessageBtn = document.getElementById("sendMessageBtn");
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (!await Auth.verifySession()) {
@@ -106,4 +107,12 @@ micBtn.addEventListener("click", async () => {
 
 micToggle.addEventListener("click", () => {
     Audio.toggleMicrophoneMute();
+});
+
+document.getElementById("usernameInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") addFriendBtn.click();
+});
+
+document.getElementById("messageInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") sendMessageBtn.click();
 });
