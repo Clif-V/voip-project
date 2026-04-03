@@ -41,7 +41,7 @@ input {
 input:focus { outline: none; border-color: #e94560; }
 input::placeholder { color: #555; }
 
-#loginBtn {
+#recoverBtn {
     width: 100%;
     padding: 10px;
     background: #e94560;
@@ -52,24 +52,7 @@ input::placeholder { color: #555; }
     font-size: 15px;
     font-weight: bold;
 }
-#loginBtn:hover { background: #c73652; }
-
-#showText {
-    color: #888;
-    font-size: 13px;
-    cursor: pointer;
-    user-select: none;
-}
-
-#showPassword:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-#showPassword:active {
-    color: #e94560;
-    cursor: pointer;
-}
+#recoverBtn:hover { background: #c73652; }
 
 #showRecoveryPhrase:hover {
     text-decoration: underline;
@@ -88,3 +71,4 @@ input::placeholder { color: #555; }
 }
 .auth-footer a { color: #e94560; text-decoration: none; }
 .auth-footer a:hover { text-decoration: underline; }
+.auth-footer span { color: #e94560; font-weight: bold; margin-top: 8px; }

@@ -1,14 +1,27 @@
 
 import * as Auth from "./auth.js";
+import * as UI from "./ui.js";
 
 // If already logged in, redirect to app
-if (localStorage.getItem("token")) {
-    window.location.href = "app.html";
-}
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("token") && localStorage.getItem("privateKey")) {
+        console.log("Existing session found, showing app..." + localStorage.getItem("token") + localStorage.getItem("privateKey"));
+        UI.showApp();
+    }
+});
 
 const loginBtn = document.getElementById("loginBtn");
 
-loginBtn.addEventListener("click", () => {
-    console.log("Login button clicked");
-    Auth.login();
+loginBtn.addEventListener("click", async () => {
+    if (await Auth.login()) {
+        if (!localStorage.getItem("privateKey")) {
+            alert("Private key not found. Please enter your recovery phrase to retrieve it.");
+            UI.showRecovery();
+            return;
+        }
+        UI.showApp();
+    }
+    else {
+        alert("Login failed. Please check your credentials.");
+    }
 });

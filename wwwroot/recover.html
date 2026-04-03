@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/recover.css">
+    <title>Recover Account</title>
+</head>
+<body>
+    <div class="auth-card">
+        <h2>VoIP</h2>
+        <h3>Recover Private Key</h3>
+        <input id="recoverUsername" type="text" placeholder="Username" />
+        <input id="recoverPhrase" type="password" placeholder="Recovery passphrase" />
+        <p class="auth-footer" id="showRecoveryPhrase">Show Recovery Phrase</p>
+        <button id="recoverBtn">Recover</button>
+        <p class="auth-footer"><a href="index.html">Back to login</a></p>
+    </div>
+    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script type="module" src="./JavaScript/recover.js"></script>
+    <script type="module" src="JavaScript/ui.js"></script>
+</body>
+</html>

@@ -13,7 +13,6 @@ namespace VoipBackend.Controllers
 {
     [ApiController]
     [Route("auth")]
-    [Route("users")]
     public class AuthController(AuthService auth, IHubContext<SignalingHub> hubContext) : ControllerBase
     {
         private readonly AuthService _auth = auth;
@@ -28,7 +27,7 @@ namespace VoipBackend.Controllers
                 return BadRequest("Username cannot contain '@'.");
             }
 
-            var success = await _auth.Register(input.Username, input.Password, input.Email);
+            var success = await _auth.Register(input.Username, input.Password, input.Email, input.PublicKey, input.EncryptedPrivateKey, input.PrivateKeySalt, input.PrivateKeyIv);
 
             if (!success)
                 return BadRequest("User already exists");
@@ -92,6 +91,20 @@ namespace VoipBackend.Controllers
             return Ok(new { username = user.Username, email = user.Email });
         }
 
+
+        [HttpGet("keypair/{username}")]
+        public async Task<IActionResult> GetKeypair(string username)
+        {
+            var user = await _auth.findUserByUsername(username);
+            if (user == null) return NotFound();
+
+            return Ok(new
+            {
+                encryptedPrivateKey = user.EncryptedPrivateKey,
+                privateKeySalt = user.PrivateKeySalt,
+                privateKeyIv = user.PrivateKeyIv
+            });
+        }
 
         [Authorize]
         [HttpDelete("delete")]

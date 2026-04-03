@@ -19,8 +19,16 @@ namespace VoipBackend.Models
         [MaxLength(100)]
         public string Email { get; set; } = string.Empty;
 
+        [MaxLength(128)]
+        public string PublicKey { get; set; } = string.Empty;
+
+        public string EncryptedPrivateKey { get; set; } = string.Empty;
+        public string PrivateKeySalt { get; set; } = string.Empty;
+        public string PrivateKeyIv { get; set; } = string.Empty;
+
         public ICollection<Friendship> Friendships { get; set; } = [];
         public ICollection<FriendRequest> SentRequests { get; set; } = [];
         public ICollection<FriendRequest> ReceivedRequests { get; set; } = [];
+        public ICollection<ConversationParticipant> Conversations { get; set; } = [];
     }
 }

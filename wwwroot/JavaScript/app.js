@@ -6,11 +6,6 @@ import * as Auth from "./auth.js";
 import * as Signaling from "./signaling.js";
 import * as Friend from "./friend.js";
 
-// Redirect to login if not authenticated
-if (!localStorage.getItem("token")) {
-    window.location.href = "index.html";
-}
-
 const micToggle = document.getElementById("micToggle");
 const micBtn = document.getElementById("micBtn");
 const logoutBtn = document.getElementById("logoutBtn");
@@ -24,7 +19,7 @@ const toggleRequestsBtn = document.getElementById("toggleRequestsBtn");
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (!await Auth.verifySession()) {
-        window.location.href = "index.html";
+        UI.showLogin();
         return;
     }
 

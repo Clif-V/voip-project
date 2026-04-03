@@ -14,7 +14,7 @@ namespace VoipBackend.Services
             _context = context;
         }
 
-        public async Task<bool> Register(string username, string password, string email)
+        public async Task<bool> Register(string username, string password, string email, string publicKey, string encryptedPrivateKey, string privateKeySalt, string privateKeyIv)
         {
             var exists = await _context.Users.AnyAsync(u => u.Username == username);
             if (exists) return false;
@@ -22,9 +22,12 @@ namespace VoipBackend.Services
             var user = new User
             {
                 Username = username.ToLower(),
-                
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
-                Email = email.ToLower()
+                Email = email.ToLower(),
+                PublicKey = publicKey,
+                EncryptedPrivateKey = encryptedPrivateKey,
+                PrivateKeySalt = privateKeySalt,
+                PrivateKeyIv = privateKeyIv
             };
 
             _context.Users.Add(user);

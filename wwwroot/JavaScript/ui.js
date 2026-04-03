@@ -1,6 +1,27 @@
 import { state } from "./state.js";
 import * as Friend from "./friend.js";
 
+try {
+    document.getElementById("showPassword").addEventListener("mousedown", (e) => {
+    document.getElementById("password").type = "text";
+    });
+
+    document.getElementById("showPassword").addEventListener("mouseup", (e) => {
+        document.getElementById("password").type = "password";
+    });
+
+    document.getElementById("showRecoveryPhrase").addEventListener("mousedown", (e) => {
+        document.getElementById("recoveryPhrase").type = "text";
+    });
+
+    document.getElementById("showRecoveryPhrase").addEventListener("mouseup", (e) => {
+        document.getElementById("recoveryPhrase").type = "password";
+    });
+}
+catch (e) {
+    // Not all pages have these elements, so we catch errors silently
+}
+
 export function updateUI() {
     const callBtn = document.getElementById("callBtn");
     const endCallBtn = document.getElementById("endCallBtn");
@@ -133,4 +154,20 @@ export function showIncomingCall() {
 
 export function hideIncomingCall() {
     document.getElementById("incomingCall").style.display = "none";
+}
+
+export function showLogin(){
+    window.location.href = "index.html";
+}
+
+export function showRegistration(){
+    window.location.href = "register.html";
+}
+
+export function showApp(){
+    window.location.href = "app.html";
+}
+
+export function showRecovery(){
+    window.location.href = "recover.html";
 }

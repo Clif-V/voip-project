@@ -52,7 +52,28 @@ input::placeholder { color: #555; }
     font-size: 15px;
     font-weight: bold;
 }
+
 #registerBtn:hover { background: #c73652; }
+
+#showPassword:hover { 
+    text-decoration: underline; 
+    cursor: pointer; 
+}
+
+#showPassword:active {
+    color: #e94560;
+    cursor: pointer;
+}
+
+#showRecoveryPhrase:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#showRecoveryPhrase:active {
+    color: #e94560;
+    cursor: pointer;
+}
 
 .auth-footer {
     text-align: center;
@@ -61,3 +82,4 @@ input::placeholder { color: #555; }
 }
 .auth-footer a { color: #e94560; text-decoration: none; }
 .auth-footer a:hover { text-decoration: underline; }
+.auth-footer span { color: #e94560; font-weight: bold; margin-top: 8px; }
