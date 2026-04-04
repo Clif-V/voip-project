@@ -2,6 +2,7 @@ import { state } from "./state.js";
 import * as UI from "./ui.js";
 import * as Friend from "./friend.js";
 import * as Audio from "./audio.js";
+import * as Message from "./message.js";
 
 export const connection = new signalR.HubConnectionBuilder()
     .withUrl("/signal", {
@@ -77,6 +78,19 @@ connection.on("UserMuteChanged", (userID, isMuted) => {
     console.log(`User ${userID} mute state changed: ${isMuted}`);
     if (state.currentTargetUser === userID) {
         UI.setRemoteMicStatus(isMuted);
+    }
+});
+
+connection.on("ReceiveMessage", async (fromUser, ciphertextB64, ivB64) => {
+    try {
+        const text = await Message.decryptMessage(fromUser, ciphertextB64, ivB64);
+        if (state.selectedFriend === fromUser) {
+            UI.appendMessage(text, false);
+        } else {
+            UI.markUnreadMessage(fromUser);
+        }
+    } catch (e) {
+        console.error("Failed to decrypt incoming message from", fromUser, e);
     }
 });
 

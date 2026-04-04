@@ -4,10 +4,8 @@ using VoipBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using VoipBackend.Hubs;
-using Microsoft.VisualBasic;
 
-
-namespace VoipProject.Controllers;
+namespace VoipBackend.Controllers;
 [ApiController]
 [Route("friend")]
 public class FriendController(FriendService friendService, IHubContext<SignalingHub> hubContext) : ControllerBase
@@ -144,6 +142,21 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
 
         var friends = await _friendService.GetFriendsForUser(username);
         return Ok(friends);
+    }
+
+    [Authorize]
+    [HttpGet("{friendUsername}")]
+    public async Task<IActionResult> GetFriendByUsername(string friendUsername)
+    {
+        var username = User.Identity?.Name;
+        if (string.IsNullOrEmpty(username))
+            return Unauthorized();
+
+        var friend = await _friendService.GetFriendshipByUsername(username, friendUsername);
+        if (friend == null)
+            return NotFound();
+
+        return Ok(friend);
     }
 
     [Authorize]

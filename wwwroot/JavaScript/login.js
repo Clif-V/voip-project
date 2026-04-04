@@ -4,8 +4,8 @@ import * as UI from "./ui.js";
 
 // If already logged in, redirect to app
 document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("token") && localStorage.getItem("privateKey")) {
-        console.log("Existing session found, showing app..." + localStorage.getItem("token") + localStorage.getItem("privateKey"));
+    const storedUsername = localStorage.getItem("username");
+    if (localStorage.getItem("token") && storedUsername && localStorage.getItem("privateKey_" + storedUsername)) {
         UI.showApp();
     }
 });
@@ -14,7 +14,8 @@ const loginBtn = document.getElementById("loginBtn");
 
 loginBtn.addEventListener("click", async () => {
     if (await Auth.login()) {
-        if (!localStorage.getItem("privateKey")) {
+        const username = localStorage.getItem("username");
+        if (!localStorage.getItem("privateKey_" + username)) {
             alert("Private key not found. Please enter your recovery phrase to retrieve it.");
             UI.showRecovery();
             return;

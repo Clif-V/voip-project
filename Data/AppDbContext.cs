@@ -30,13 +30,13 @@ namespace VoipBackend.Data
             });
             modelBuilder.Entity<Friendship>(entity =>
             {
-                entity.HasOne<User>()
+                entity.HasOne(f => f.User1)
                 .WithMany()
                 .HasForeignKey(f => f.User1Id)
                 .OnDelete(DeleteBehavior.Restrict);
 
                 entity
-                .HasOne<User>()
+                .HasOne(f => f.User2)
                 .WithMany()
                 .HasForeignKey(f => f.User2Id)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -73,6 +73,7 @@ namespace VoipBackend.Data
                 .HasForeignKey(c => c.ConversationId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+        
 
         public DbSet<User> Users { get; set; }
         public DbSet<FriendRequest> FriendRequests { get; set; }

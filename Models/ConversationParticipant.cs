@@ -1,10 +1,11 @@
-using VoipBackend.Models;
-
-public class ConversationParticipant
+namespace VoipBackend.Models
 {
-    public int ConversationId { get; set; }
-    public Conversation Conversation { get; set; }
-    public int UserId { get; set; }
-    public User User { get; set; }
-    public DateTime JoinedAt { get; set; } = DateTime.UtcNow;
+    public class ConversationParticipant
+    {
+        public int ConversationId { get; set; }
+        public Conversation Conversation { get; set; } = null!;
+        public int UserId { get; set; }
+        public User User { get; set; } = null!;
+        public DateTime JoinedAt { get; set; } = DateTime.UtcNow;
+    }
 }

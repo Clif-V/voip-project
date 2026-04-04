@@ -5,6 +5,7 @@ import * as WebRTC from "./webrtc.js";
 import * as Auth from "./auth.js";
 import * as Signaling from "./signaling.js";
 import * as Friend from "./friend.js";
+import * as Message from "./message.js";
 
 const micToggle = document.getElementById("micToggle");
 const micBtn = document.getElementById("micBtn");
@@ -106,10 +107,12 @@ micBtn.addEventListener("click", async () => {
 });
 
 sendMessageBtn.addEventListener("click", async () => {
+    console.log("Send message button clicked");
     const messageInput = document.getElementById("messageInput");
     const message = messageInput.value.trim();
     if (message && state.selectedFriend) {
-        await Friend.sendMessage(state.selectedFriend, message);
+        await Message.sendMessage(state.selectedFriend, message);
+        UI.appendMessage(message, true);
         messageInput.value = "";
     }
 });

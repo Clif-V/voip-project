@@ -180,6 +180,22 @@ body {
 }
 .remove-friend-btn:hover { color: #e94560; background: rgba(233,69,96,0.1); }
 
+.unread-badge {
+    background: #e94560;
+    color: white;
+    border-radius: 10px;
+    min-width: 18px;
+    height: 18px;
+    font-size: 11px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    margin-left: auto;
+    margin-right: 6px;
+}
+
 #mainPanel {
     flex: 1;
     display: flex;
@@ -291,10 +307,8 @@ body {
 #messageArea {
     flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
-    font-size: 14px;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 #incomingCall {
@@ -332,13 +346,36 @@ body {
     cursor: pointer;
 }
 
-#messageArea{
+#messages {
     flex: 1;
+    overflow-y: auto;
+    padding: 16px 24px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.message {
+    max-width: 65%;
+    padding: 10px 14px;
+    border-radius: 16px;
     font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.message.sent {
+    align-self: flex-end;
+    background: #e94560;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message.received {
+    align-self: flex-start;
+    background: #16213e;
+    color: #e0e0e0;
+    border-bottom-left-radius: 4px;
 }
 
 #messageInputArea{

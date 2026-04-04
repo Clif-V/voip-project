@@ -126,4 +126,13 @@ public class SignalingHub : Hub
         }
         return Task.CompletedTask;
     }
+
+    public Task SendMessageToUser(string targetUsername, string message)
+    {
+        if (users.TryGetValue(targetUsername, out var connectionId))
+        {
+            return Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
+        }
+        return Task.CompletedTask;
+    }
 }

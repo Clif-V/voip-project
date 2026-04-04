@@ -1,13 +1,14 @@
-using Microsoft.EntityFrameworkCore.Metadata;
-using VoipBackend.Models;
-
-public class Message
+namespace VoipBackend.Models
 {
-    public int Id { get; set; }
-    public string Content { get; set;}
-    public int SenderId { get; set; }
-    public User Sender { get; set; }
-    public int ConversationId { get; set; }
-    public Conversation Conversation { get; set; } // need to encrypt
-    public DateTime Timestamp { get; set;} = DateTime.UtcNow;
+    public class Message
+    {
+        public int Id { get; set; }
+        public string Content { get; set; } = string.Empty;
+        public int SenderId { get; set; }
+        public User Sender { get; set; } = null!;
+        public int ConversationId { get; set; }
+        public Conversation Conversation { get; set; } = null!;
+        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+        public string Iv { get; set; } = string.Empty;
+    }
 }

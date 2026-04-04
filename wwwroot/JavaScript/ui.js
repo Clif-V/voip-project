@@ -1,5 +1,8 @@
 import { state } from "./state.js";
 import * as Friend from "./friend.js";
+import * as Message from "./message.js";
+
+const conversationIds = {}; // username -> conversationId
 
 try {
     document.getElementById("showPassword").addEventListener("mousedown", (e) => {
@@ -88,9 +91,11 @@ export async function renderOnlineFriendsList() {
 
     const friends = await Friend.getFriends();
 
-    friends.forEach(friend => {
+    for (const friend of friends) {
         const item = document.createElement("li");
-        if (state.selectedFriend === friend) item.classList.add("selected");
+
+        const conversationId = await createConversation(friend);
+        conversationIds[friend] = conversationId;
 
         const nameSpan = document.createElement("span");
         nameSpan.textContent = friend;
@@ -116,19 +121,41 @@ export async function renderOnlineFriendsList() {
         item.addEventListener("click", () => selectFriend(friend));
 
         friendsList.appendChild(item);
-    });
+    }
+}
+
+export function markUnreadMessage(fromUser) {
+    const li = [...document.querySelectorAll("#friendsList li")]
+        .find(li => li.querySelector("span")?.textContent === fromUser);
+    if (!li) return;
+    let badge = li.querySelector(".unread-badge");
+    if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "unread-badge";
+        badge.textContent = "1";
+        li.insertBefore(badge, li.querySelector(".remove-friend-btn"));
+    } else {
+        badge.textContent = String(parseInt(badge.textContent || "0") + 1);
+    }
 }
 
 export function selectFriend(username) {
     state.selectedFriend = username;
 
     document.querySelectorAll("#friendsList li").forEach(li => {
-        li.classList.toggle("selected", li.querySelector("span")?.textContent === username);
+        const isSelected = li.querySelector("span")?.textContent === username;
+        li.classList.toggle("selected", isSelected);
+        if (isSelected) li.querySelector(".unread-badge")?.remove();
     });
 
     document.getElementById("selectedFriendName").textContent = username;
     document.getElementById("noSelectionView").style.display = "none";
     document.getElementById("friendView").style.display = "flex";
+
+    const conversationId = conversationIds[username];
+    if (conversationId) {
+        renderConversationHistory(conversationId, username);
+    }
 }
 
 // Kept for compatibility with signaling.js
@@ -170,4 +197,69 @@ export function showApp(){
 
 export function showRecovery(){
     window.location.href = "recover.html";
+}
+
+async function renderConversationHistory(conversationId, friendUsername) {
+    const historyContainer = document.getElementById("messages");
+    historyContainer.innerHTML = "";
+
+    const res = await fetch(`/message/history/${conversationId}`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        }
+    });
+
+    if (!res.ok) {
+        console.log("Failed to fetch conversation history");
+        return;
+    }
+
+    const messages = await res.json();
+    for (const msg of messages) {
+        let text;
+        if (!msg.iv) {
+            text = "[Message encrypted before IV support — cannot decrypt]";
+        } else {
+            try {
+                text = await Message.decryptMessage(friendUsername, msg.content, msg.iv);
+            } catch (e) {
+                console.error("Failed to decrypt message:", e);
+                text = "[Unable to decrypt]";
+            }
+        }
+        appendMessage(text, msg.isSentByCurrentUser);
+    }
+
+    historyContainer.scrollTop = historyContainer.scrollHeight;
+}
+
+export function appendMessage(text, isSent) {
+    const historyContainer = document.getElementById("messages");
+    const msgDiv = document.createElement("div");
+    msgDiv.className = isSent ? "message sent" : "message received";
+    msgDiv.textContent = text;
+    historyContainer.appendChild(msgDiv);
+    historyContainer.scrollTop = historyContainer.scrollHeight;
+}
+
+export function showAlert(message) {
+    alert(message);
+}
+
+async function createConversation(friend) {
+     let res = await fetch(`/message/conversation`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ WithUsername: friend })
+    });
+    if (!res.ok) {
+        console.log("Failed to create conversation");
+        return null;
+    }
+    const conversation = await res.json();
+    return conversation.id;
 }

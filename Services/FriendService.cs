@@ -194,5 +194,16 @@ namespace VoipBackend.Services
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
         }
+
+        // ...existing code...
+        public async Task<Friendship?> GetFriendshipByUsername(string currentUsername, string friendUsername)
+        {
+            return await _context.Friendships
+                .Include(f => f.User1)
+                .Include(f => f.User2)
+                .FirstOrDefaultAsync(f =>
+                    (f.User1.Username == currentUsername && f.User2.Username == friendUsername) ||
+                    (f.User1.Username == friendUsername && f.User2.Username == currentUsername));
+        }
     }
 }

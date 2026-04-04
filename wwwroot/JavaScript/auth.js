@@ -97,8 +97,8 @@ export async function register() {
         return;
     }
 
-    // Store private key in localStorage for this session
-    localStorage.setItem("privateKey", toBase64(exportedPrivateKey));
+    // Store private key in localStorage scoped to this user
+    localStorage.setItem("privateKey_" + username, toBase64(exportedPrivateKey));
 
     alert("Registration successful!");
     window.location.href = "index.html";
@@ -144,7 +144,7 @@ export async function recoverPrivateKey() {
         return;
     }
 
-    localStorage.setItem("privateKey", toBase64(privateKeyBuffer));
+    localStorage.setItem("privateKey_" + username, toBase64(privateKeyBuffer));
     alert("Key recovered successfully! You can access your account.");
     UI.showApp();
 }
@@ -160,10 +160,11 @@ export async function logout() {
         state.localStream.getTracks().forEach(track => track.stop());
     }
 
+    localStorage.removeItem("privateKey_" + localStorage.getItem("username"));
     localStorage.removeItem("username");
     localStorage.removeItem("token");
 
-    UI.showLogin();z
+    UI.showLogin();
 }
 
 export async function verifySession() {
@@ -172,7 +173,8 @@ export async function verifySession() {
         console.log("No token found in localStorage");
         return false;
     }
-    if (!localStorage.getItem("privateKey")) {
+    const username = localStorage.getItem("username");
+    if (!username || !localStorage.getItem("privateKey_" + username)) {
         console.log("No privateKey found in localStorage");
         return false;
     }
