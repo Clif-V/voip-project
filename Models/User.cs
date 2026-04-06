@@ -29,6 +29,5 @@ namespace VoipBackend.Models
         public ICollection<Friendship> Friendships { get; set; } = [];
         public ICollection<FriendRequest> SentRequests { get; set; } = [];
         public ICollection<FriendRequest> ReceivedRequests { get; set; } = [];
-        public ICollection<ConversationParticipant> Conversations { get; set; } = [];
     }
 }

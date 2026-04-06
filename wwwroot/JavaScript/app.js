@@ -111,7 +111,8 @@ sendMessageBtn.addEventListener("click", async () => {
     const messageInput = document.getElementById("messageInput");
     const message = messageInput.value.trim();
     if (message && state.selectedFriend) {
-        await Message.sendMessage(state.selectedFriend, message);
+        const token = await Message.deriveConversationToken(state.selectedFriend);
+        await Message.sendMessage(state.selectedFriend, message, token);
         UI.appendMessage(message, true);
         messageInput.value = "";
     }

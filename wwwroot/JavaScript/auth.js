@@ -105,8 +105,8 @@ export async function register() {
 }
 
 export async function recoverPrivateKey() {
-    const username = document.getElementById("recoverUsername").value;
-    const recoveryPhrase = document.getElementById("recoverPhrase").value;
+    const username = document.getElementById("recoveryUsername").value;
+    const recoveryPhrase = document.getElementById("recoveryPhrase").value;
 
     if (!username || !recoveryPhrase) {
         alert("Please enter your username and recovery passphrase.");

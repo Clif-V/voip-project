@@ -9,9 +9,8 @@ namespace VoipBackend.Controllers
 {
     [ApiController]
     [Route("message")]
-    public class MessageController(FriendService friendService, MessageService messageService, IHubContext<SignalingHub> hubContext) : ControllerBase
+    public class MessageController(MessageService messageService, IHubContext<SignalingHub> hubContext) : ControllerBase
     {
-        private readonly FriendService _friendService = friendService;
         private readonly MessageService _messageService = messageService;
         private readonly IHubContext<SignalingHub> _hubContext = hubContext;
 
@@ -19,87 +18,39 @@ namespace VoipBackend.Controllers
         [HttpPost("send")]
         public async Task<IActionResult> SendMessage([FromBody] MessageRequest input)
         {
-            var senderUsername = User.Identity?.Name;
-            if (string.IsNullOrEmpty(senderUsername)) return Unauthorized();
+            if (string.IsNullOrWhiteSpace(input.Token) || input.Token.Length != 64)
+                return BadRequest("Invalid conversation token.");
 
-            var sender = await _friendService.GetUserByUsername(senderUsername);
-            var recipient = await _friendService.GetUserByUsername(input.ToUsername);
-            if (sender == null || recipient == null) return NotFound("User not found.");
-
-            var conversation = await _messageService.GetOrCreateConversation(sender.Id, recipient.Id);
-            var message = await _messageService.AddMessage(input.Message, sender.Id, conversation.Id, input.Iv);
+            // Sender identity is embedded inside the encrypted content — not stored in DB
+            var conversation = await _messageService.GetOrCreateConversation(input.Token);
+            var message = await _messageService.AddMessage(input.Message, conversation.Id, input.Iv);
             if (message == null) return BadRequest("Failed to save message.");
 
-            if (SignalingHub.users.TryGetValue(input.ToUsername, out var recipientConnectionId))
+            // Route in RAM only; ToUsername is never persisted
+            if (!string.IsNullOrEmpty(input.ToUsername) &&
+                SignalingHub.users.TryGetValue(input.ToUsername, out var recipientConnectionId))
             {
                 await _hubContext.Clients.Client(recipientConnectionId)
-                    .SendAsync("ReceiveMessage", senderUsername, input.Message, input.Iv);
+                    .SendAsync("ReceiveMessage", input.Token, input.Message, input.Iv);
             }
 
             return Ok(new { conversationId = conversation.Id, messageId = message.Id });
         }
 
         [Authorize]
-        [HttpPost("conversation")]
-        public async Task<IActionResult> CreateConversation([FromBody] ConversationRequest input)
+        [HttpGet("history/{token}")]
+        public async Task<IActionResult> GetMessageHistory(string token)
         {
-            var username = User.Identity?.Name;
-            if (string.IsNullOrEmpty(username)) return Unauthorized();
+            if (string.IsNullOrWhiteSpace(token) || token.Length != 64)
+                return BadRequest("Invalid conversation token.");
 
-            var user = await _friendService.GetUserByUsername(username);
-            if (user == null) return NotFound("User not found");
-
-            var otherUser = await _friendService.GetUserByUsername(input.WithUsername);
-            if (otherUser == null) return NotFound("User not found");
-
-            var conversation = await _messageService.GetOrCreateConversation(user.Id, otherUser.Id);
-            return Ok(conversation);
-        }
-
-        [Authorize]
-        [HttpGet("conversation/{conversationId}")]
-        public async Task<IActionResult> GetConversation([FromRoute] int conversationId){
-            var username = User.Identity?.Name;
-            if (string.IsNullOrEmpty(username)) return Unauthorized();
-
-            var user = await _friendService.GetUserByUsername(username);
-            if (user == null) return NotFound("User not found");
-
-            var conversation = await _messageService.GetConversation(conversationId);
-            if (conversation == null) return NotFound("Conversation not found");
-
-            if (!conversation.Participants.Any(p => p.UserId == user.Id))
-                return Forbid("You are not a participant in this conversation.");
-
-            return Ok(conversation);
-        }
-
-        [Authorize]
-        [HttpGet("history/{conversationId}")]
-        public async Task<IActionResult> GetMessageHistory(int conversationId)
-        {
-            var username = User.Identity?.Name;
-            if (string.IsNullOrEmpty(username)) return Unauthorized();
-
-            var user = await _friendService.GetUserByUsername(username);
-            if (user == null) return NotFound("User not found");
-
-            var conversation = await _messageService.GetConversation(conversationId);
-            if (conversation == null) return NotFound("Conversation not found");
-
-            if (!conversation.Participants.Any(p => p.UserId == user.Id))
-                return Forbid("You are not a participant in this conversation.");
+            // Knowledge of the 256-bit token is the authorization proof; JWT ensures authentication
+            var conversation = await _messageService.GetConversationByToken(token);
+            if (conversation == null) return Ok(Array.Empty<object>());
 
             var messages = conversation.Messages
                 .OrderBy(m => m.Timestamp)
-                .Select(m => new
-                {
-                    m.Content,
-                    m.Iv,
-                    m.Timestamp,
-                    senderUsername = m.Sender.Username,
-                    isSentByCurrentUser = m.SenderId == user.Id
-                });
+                .Select(m => new { m.Content, m.Iv, m.Timestamp });
 
             return Ok(messages);
         }

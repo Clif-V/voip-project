@@ -2,27 +2,24 @@ import { state } from "./state.js";
 import * as Friend from "./friend.js";
 import * as Message from "./message.js";
 
-const conversationIds = {}; // username -> conversationId
-
-try {
-    document.getElementById("showPassword").addEventListener("mousedown", (e) => {
+document.getElementById("showPassword")?.addEventListener("mousedown", () => {
     document.getElementById("password").type = "text";
-    });
+});
+document.getElementById("showPassword")?.addEventListener("mouseup", () => {
+    document.getElementById("password").type = "password";
+});
+document.getElementById("showRecoveryPhrase")?.addEventListener("mousedown", () => {
+    document.getElementById("recoveryPhrase").type = "text";
+});
+document.getElementById("showRecoveryPhrase")?.addEventListener("mouseup", () => {
+    document.getElementById("recoveryPhrase").type = "password";
+});
 
-    document.getElementById("showPassword").addEventListener("mouseup", (e) => {
-        document.getElementById("password").type = "password";
-    });
+const conversationTokens = {}; // username -> conversation token (SHA-256 of ECDH shared secret)
 
-    document.getElementById("showRecoveryPhrase").addEventListener("mousedown", (e) => {
-        document.getElementById("recoveryPhrase").type = "text";
-    });
-
-    document.getElementById("showRecoveryPhrase").addEventListener("mouseup", (e) => {
-        document.getElementById("recoveryPhrase").type = "password";
-    });
-}
-catch (e) {
-    // Not all pages have these elements, so we catch errors silently
+// Reverse lookup: token -> friend username (used by signaling.js for incoming messages)
+export function getConversationFriend(token) {
+    return Object.keys(conversationTokens).find(u => conversationTokens[u] === token) ?? null;
 }
 
 export function updateUI() {
@@ -49,9 +46,14 @@ export function renderFriendRequestList(friendRequests) {
     outgoingList.innerHTML = "";
 
     const totalIncoming = friendRequests.incoming?.length || 0;
-    const badge = document.getElementById("requestBadge");
+    const badge = document.getElementById("incomingRequestBadge");
     badge.textContent = totalIncoming;
     badge.style.display = totalIncoming > 0 ? "inline" : "none";
+
+    const totalOutgoing = friendRequests.outgoing?.length || 0;
+    const outgoingBadge = document.getElementById("outgoingRequestBadge");
+    outgoingBadge.textContent = totalOutgoing;
+    outgoingBadge.style.display = totalOutgoing > 0 ? "inline" : "none";
 
     friendRequests.incoming?.forEach(request => {
         const item = document.createElement("li");
@@ -94,8 +96,8 @@ export async function renderOnlineFriendsList() {
     for (const friend of friends) {
         const item = document.createElement("li");
 
-        const conversationId = await createConversation(friend);
-        conversationIds[friend] = conversationId;
+        const token = await Message.deriveConversationToken(friend);
+        conversationTokens[friend] = token;
 
         const nameSpan = document.createElement("span");
         nameSpan.textContent = friend;
@@ -152,9 +154,9 @@ export function selectFriend(username) {
     document.getElementById("noSelectionView").style.display = "none";
     document.getElementById("friendView").style.display = "flex";
 
-    const conversationId = conversationIds[username];
-    if (conversationId) {
-        renderConversationHistory(conversationId, username);
+    const token = conversationTokens[username];
+    if (token) {
+        renderConversationHistory(token, username);
     }
 }
 
@@ -199,11 +201,11 @@ export function showRecovery(){
     window.location.href = "recover.html";
 }
 
-async function renderConversationHistory(conversationId, friendUsername) {
+async function renderConversationHistory(token, friendUsername) {
     const historyContainer = document.getElementById("messages");
     historyContainer.innerHTML = "";
 
-    const res = await fetch(`/message/history/${conversationId}`, {
+    const res = await fetch(`/message/history/${encodeURIComponent(token)}`, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -216,19 +218,23 @@ async function renderConversationHistory(conversationId, friendUsername) {
     }
 
     const messages = await res.json();
+    const myUsername = localStorage.getItem("username");
     for (const msg of messages) {
         let text;
+        let isSentByCurrentUser = false;
         if (!msg.iv) {
             text = "[Message encrypted before IV support — cannot decrypt]";
         } else {
             try {
-                text = await Message.decryptMessage(friendUsername, msg.content, msg.iv);
+                const result = await Message.decryptMessage(friendUsername, msg.content, msg.iv);
+                text = result.text;
+                isSentByCurrentUser = result.from === myUsername;
             } catch (e) {
                 console.error("Failed to decrypt message:", e);
                 text = "[Unable to decrypt]";
             }
         }
-        appendMessage(text, msg.isSentByCurrentUser);
+        appendMessage(text, isSentByCurrentUser);
     }
 
     historyContainer.scrollTop = historyContainer.scrollHeight;
@@ -247,19 +253,3 @@ export function showAlert(message) {
     alert(message);
 }
 
-async function createConversation(friend) {
-     let res = await fetch(`/message/conversation`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({ WithUsername: friend })
-    });
-    if (!res.ok) {
-        console.log("Failed to create conversation");
-        return null;
-    }
-    const conversation = await res.json();
-    return conversation.id;
-}

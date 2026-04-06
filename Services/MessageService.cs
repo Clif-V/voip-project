@@ -13,42 +13,28 @@ namespace VoipBackend.Services
             _context = context;
         }
 
-        public async Task<Conversation> GetConversation(int conversationId)
+        public async Task<Conversation?> GetConversationByToken(string token)
         {
-            var conversation = await _context.Conversations
-                .Include(c => c.Participants)
+            return await _context.Conversations
                 .Include(c => c.Messages)
-                    .ThenInclude(m => m.Sender)
-                .FirstOrDefaultAsync(c => c.Id == conversationId);
-
-            if (conversation == null) throw new Exception("Conversation not found");
-            return conversation;
+                .FirstOrDefaultAsync(c => c.Token == token);
         }
 
-        public async Task<Conversation> GetOrCreateConversation(int senderId, int recipientId)
+        public async Task<Conversation> GetOrCreateConversation(string token)
         {
-            // Look for an existing conversation that contains both users and no one else
             var conversation = await _context.Conversations
-                .Include(c => c.Participants)
-                .Where(c => c.Participants.Any(p => p.UserId == senderId)
-                         && c.Participants.Any(p => p.UserId == recipientId)
-                         && c.Participants.Count == 2)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(c => c.Token == token);
 
             if (conversation != null) return conversation;
 
-            // Create a new conversation
-            conversation = new Conversation();
-            conversation.Participants.Add(new ConversationParticipant { UserId = senderId });
-            conversation.Participants.Add(new ConversationParticipant { UserId = recipientId });
-
+            conversation = new Conversation { Token = token };
             _context.Conversations.Add(conversation);
             await _context.SaveChangesAsync();
 
             return conversation;
         }
 
-        public async Task<Message?> AddMessage(string content, int senderId, int conversationId, string Iv)
+        public async Task<Message?> AddMessage(string content, int conversationId, string Iv)
         {
             var conversation = await _context.Conversations.FirstOrDefaultAsync(c => c.Id == conversationId);
             if (conversation == null) return null;
@@ -56,7 +42,6 @@ namespace VoipBackend.Services
             var message = new Message
             {
                 Content = content,
-                SenderId = senderId,
                 ConversationId = conversationId,
                 Iv = Iv
             };

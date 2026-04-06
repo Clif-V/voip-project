@@ -16,7 +16,6 @@ loginBtn.addEventListener("click", async () => {
     if (await Auth.login()) {
         const username = localStorage.getItem("username");
         if (!localStorage.getItem("privateKey_" + username)) {
-            alert("Private key not found. Please enter your recovery phrase to retrieve it.");
             UI.showRecovery();
             return;
         }

@@ -6,7 +6,7 @@ recoverBtn.addEventListener("click", () => {
     Auth.recoverPrivateKey();
 });
 
-document.querySelectorAll("#recoverPhrase, #recoverUsername").forEach(el => {
+document.querySelectorAll("#recoveryPhrase, #recoveryUsername").forEach(el => {
     el.addEventListener("keydown", function (e) {
         if (e.key === "Enter") recoverBtn.click();
     });

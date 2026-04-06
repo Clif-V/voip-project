@@ -42,30 +42,15 @@ namespace VoipBackend.Data
                 .OnDelete(DeleteBehavior.Restrict);
             });
 
-            modelBuilder.Entity<ConversationParticipant>()
-                .HasKey(cp => new {cp.ConversationId, cp.UserId});
-
-            modelBuilder.Entity<ConversationParticipant>()
-                .HasOne(cp => cp.Conversation)
-                .WithMany(c => c.Participants)
-                .HasForeignKey(cp => cp.ConversationId);
-
-            modelBuilder.Entity<ConversationParticipant>()
-                .HasOne(cp => cp.User)
-                .WithMany(u => u.Conversations)
-                .HasForeignKey(cp => cp.UserId);
+            modelBuilder.Entity<Conversation>()
+                .HasIndex(c => c.Token)
+                .IsUnique();
 
             modelBuilder.Entity<Message>()
                 .HasKey(m => m.Id);
             
             modelBuilder.Entity<Message>()
                 .HasIndex(m => new {m.ConversationId, m.Timestamp});
-
-            modelBuilder.Entity<Message>()
-                .HasOne(m => m.Sender)
-                .WithMany()
-                .HasForeignKey(m => m.SenderId)
-                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Conversation>()
                 .HasMany(c => c.Messages)
@@ -79,7 +64,6 @@ namespace VoipBackend.Data
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
-        public DbSet<ConversationParticipant> ConversationParticipants { get; set; }
         public DbSet<Message> Messages { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)

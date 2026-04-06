@@ -81,9 +81,14 @@ connection.on("UserMuteChanged", (userID, isMuted) => {
     }
 });
 
-connection.on("ReceiveMessage", async (fromUser, ciphertextB64, ivB64) => {
+connection.on("ReceiveMessage", async (token, ciphertextB64, ivB64) => {
+    const fromUser = UI.getConversationFriend(token);
+    if (!fromUser) {
+        console.warn("ReceiveMessage: unknown conversation token", token);
+        return;
+    }
     try {
-        const text = await Message.decryptMessage(fromUser, ciphertextB64, ivB64);
+        const { text } = await Message.decryptMessage(fromUser, ciphertextB64, ivB64);
         if (state.selectedFriend === fromUser) {
             UI.appendMessage(text, false);
         } else {
