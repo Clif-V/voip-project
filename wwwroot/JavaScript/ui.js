@@ -60,7 +60,7 @@ export function renderFriendRequestList(friendRequests) {
         item.textContent = `${request.from} `;
 
         const acceptBtn = document.createElement("button");
-        acceptBtn.textContent = "✓";
+        acceptBtn.innerHTML = "&check;";
         acceptBtn.title = "Accept";
         acceptBtn.className = "req-btn req-accept";
         acceptBtn.addEventListener("click", async () => {
@@ -69,7 +69,7 @@ export function renderFriendRequestList(friendRequests) {
         item.appendChild(acceptBtn);
 
         const rejectBtn = document.createElement("button");
-        rejectBtn.textContent = "✕";
+        rejectBtn.innerHTML = "&#10006;";
         rejectBtn.title = "Reject";
         rejectBtn.className = "req-btn req-reject";
         rejectBtn.addEventListener("click", async () => {
@@ -103,7 +103,7 @@ export async function renderOnlineFriendsList() {
         nameSpan.textContent = friend;
 
         const removeBtn = document.createElement("button");
-        removeBtn.textContent = "✕";
+        removeBtn.innerHTML = "&#10006;";
         removeBtn.className = "remove-friend-btn";
         removeBtn.title = "Remove friend";
         removeBtn.addEventListener("click", async (e) => {

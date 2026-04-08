@@ -1,10 +1,20 @@
+:root {
+    --bg:           #1a1a2e;
+    --surface:      #16213e;
+    --border:       #0f3460;
+    --accent:       #e94560;
+    --accent-text:  #ffffff;
+    --text:         #e0e0e0;
+    --success:      #27ae60;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: sans-serif;
     height: 100vh;
-    background: #1a1a2e;
-    color: #e0e0e0;
+    background: var(--bg);
+    color: var(--text);
     overflow: hidden;
 }
 
@@ -15,16 +25,16 @@ body {
 
 #sidebar {
     width: 280px;
-    background: #16213e;
+    background: var(--surface);
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #0f3460;
+    border-right: 1px solid var(--border);
     flex-shrink: 0;
 }
 
 #sidebar-header {
     padding: 16px;
-    background: #0f3460;
+    background: var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,47 +52,47 @@ body {
     font-size: 12px;
 }
 
-#logoutBtn:hover { border-color: #e94560; color: #e94560; }
+#logoutBtn:hover { border-color: var(--accent); color: var(--accent); }
 
 #addFriendSection {
     padding: 12px;
     display: flex;
     gap: 8px;
-    border-bottom: 1px solid #0f3460;
+    border-bottom: 1px solid var(--border);
 }
 
 #usernameInput {
     flex: 1;
     padding: 8px;
-    background: #1a1a2e;
-    border: 1px solid #0f3460;
-    color: #e0e0e0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
     border-radius: 4px;
     font-size: 13px;
 }
 
-#usernameInput:focus { outline: none; border-color: #e94560; }
+#usernameInput:focus { outline: none; border-color: var(--accent); }
 
 #addFriendBtn {
     padding: 8px 12px;
-    background: #e94560;
+    background: var(--accent);
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 4px;
     cursor: pointer;
     font-size: 13px;
 }
 
-#addFriendBtn:hover { background: #c73652; }
+#addFriendBtn:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
 
-#requestsSection { border-bottom: 1px solid #0f3460; }
+#requestsSection { border-bottom: 1px solid var(--border); }
 
 #toggleRequestsBtn {
     width: 100%;
     padding: 12px 16px;
     background: transparent;
     border: none;
-    color: #e0e0e0;
+    color: var(--text);
     text-align: left;
     cursor: pointer;
     display: flex;
@@ -90,11 +100,11 @@ body {
     align-items: center;
     font-size: 13px;
 }
-#toggleRequestsBtn:hover { background: #0f3460; }
+#toggleRequestsBtn:hover { background: var(--border); }
 
 #incomingRequestBadge {
-    background: #e94560;
-    color: white;
+    background: var(--accent);
+    color: var(--accent-text);
     border-radius: 10px;
     padding: 1px 7px;
     font-size: 11px;
@@ -131,17 +141,17 @@ body {
 
 .req-btn {
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 3px;
     cursor: pointer;
     padding: 2px 7px;
     font-size: 12px;
 }
-.req-accept { background: #27ae60; }
-.req-reject { background: #e94560; }
+.req-accept { background: var(--success); }
+.req-reject { background: var(--accent); }
 
-.req-accept:hover { background: #219a52; }
-.req-reject:hover { background: #c73652; }
+.req-accept:hover { background: color-mix(in srgb, var(--success) 80%, black); }
+.req-reject:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
 
 .req-accept:active { background: #76ffaf; }
 .req-reject:active { background: #ff6658; }
@@ -172,10 +182,10 @@ body {
     border-left: 3px solid transparent;
 }
 
-#friendsList li:hover { background: #0f3460; }
+#friendsList li:hover { background: var(--border); }
 #friendsList li.selected {
-    background: #0f3460;
-    border-left-color: #e94560;
+    background: var(--border);
+    border-left-color: var(--accent);
 }
 
 .remove-friend-btn {
@@ -188,11 +198,11 @@ body {
     border-radius: 4px;
     line-height: 1;
 }
-.remove-friend-btn:hover { color: #e94560; background: rgba(233,69,96,0.1); }
+.remove-friend-btn:hover { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 
 .unread-badge {
-    background: #e94560;
-    color: white;
+    background: var(--accent);
+    color: var(--accent-text);
     border-radius: 10px;
     min-width: 18px;
     height: 18px;
@@ -235,8 +245,8 @@ body {
 
 #friendViewHeader {
     padding: 14px 24px;
-    background: #16213e;
-    border-bottom: 1px solid #0f3460;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     gap: 16px;
@@ -266,33 +276,33 @@ body {
 
 #callBtn {
     padding: 8px 20px;
-    background: #27ae60;
+    background: var(--success);
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
 }
 
-#callBtn:hover { background: #219a52; }
+#callBtn:hover { background: color-mix(in srgb, var(--success) 80%, black); }
 
 #endCallBtn {
     padding: 8px 20px;
-    background: #e94560;
+    background: var(--accent);
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     display: none;
 }
 
-#endCallBtn:hover { background: #c73652; }
+#endCallBtn:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
 
 #callControls {
     padding: 12px 24px;
-    background: #12122a;
-    border-bottom: 1px solid #0f3460;
+    background: color-mix(in srgb, var(--bg) 75%, black);
+    border-bottom: 1px solid var(--border);
     display: none;
     align-items: center;
     gap: 16px;
@@ -301,15 +311,15 @@ body {
 
 #micBtn, #micToggle {
     padding: 6px 14px;
-    border: 1px solid #0f3460;
-    background: #16213e;
-    color: #e0e0e0;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
     border-radius: 4px;
     cursor: pointer;
     font-size: 13px;
 }
 
-#micBtn:hover, #micToggle:hover { border-color: #e94560; }
+#micBtn:hover, #micToggle:hover { border-color: var(--accent); }
 
 #micStatus, #volumeLevel, #remoteMicStatus {
     font-size: 13px;
@@ -327,8 +337,8 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #16213e;
-    border: 1px solid #0f3460;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px 24px;
     display: none;
@@ -342,18 +352,18 @@ body {
 
 #acceptCallBtn {
     padding: 8px 18px;
-    background: #27ae60;
+    background: var(--success);
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 4px;
     cursor: pointer;
     margin-right: 8px;
 }
 #rejectCallBtn {
     padding: 8px 18px;
-    background: #e94560;
+    background: var(--accent);
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 4px;
     cursor: pointer;
 }
@@ -366,7 +376,7 @@ body {
     flex-direction: column;
     gap: 8px;
     scrollbar-width: thin;
-    scrollbar-color: #0f3460 transparent;
+    scrollbar-color: var(--border) transparent;
 }
 
 #messages::-webkit-scrollbar {
@@ -378,12 +388,12 @@ body {
 }
 
 #messages::-webkit-scrollbar-thumb {
-    background-color: #0f3460;
+    background-color: var(--border);
     border-radius: 3px;
 }
 
 #messages::-webkit-scrollbar-thumb:hover {
-    background-color: #e94560;
+    background-color: var(--accent);
 }
 
 .message {
@@ -397,15 +407,15 @@ body {
 
 .message.sent {
     align-self: flex-end;
-    background: #e94560;
-    color: white;
+    background: var(--accent);
+    color: var(--accent-text);
     border-bottom-right-radius: 4px;
 }
 
 .message.received {
     align-self: flex-start;
-    background: #16213e;
-    color: #e0e0e0;
+    background: var(--surface);
+    color: var(--text);
     border-bottom-left-radius: 4px;
 }
 
@@ -414,16 +424,16 @@ body {
     align-self: flex-end;
     width: 100%;
     height: 10%;
-    background-color: #12122a;
+    background-color: color-mix(in srgb, var(--bg) 75%, black);
     gap:10px;
     padding: 20px;
 }
 
 #messageInput{
     flex: 1;
-    background: #1a1a2e;
-    border: 1px solid #0f3460;
-    color: #e0e0e0;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
     border-radius: 4px;
     font-size: 13px;
     padding-left: 10px;
@@ -431,23 +441,121 @@ body {
 
 #sendMessageBtn{
     padding: 8px 18px;
-    background: #e94560;
+    background: var(--accent);
     border: none;
-    color: white;
+    color: var(--accent-text);
     border-radius: 4px;
     cursor: pointer;
 }
-#sendMessageBtn:hover { background: #c73652; }
+#sendMessageBtn:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
 
-#messageInput:focus { outline: none; border-color: #e94560; }
+#messageInput:focus { outline: none; border-color: var(--accent); }
 
 input[type="radio"] {
     cursor: pointer;
-    accent-color: #e94560;
+    accent-color: var(--accent);
 }
 
 input[type="radio"]:hover {
-    accent-color: #c73652;
+    accent-color: color-mix(in srgb, var(--accent) 80%, black);
 }
 
-input[type="radio"]:active { accent-color: #ff6658; }
+input[type="radio"]:active { accent-color: color-mix(in srgb, var(--accent) 70%, white); }
+
+/* ── Settings modal ─────────────────────────────────────── */
+
+#settingsOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+#settingsOverlay.open { display: flex; }
+
+#settingsModal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+#settingsModal h2 {
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.settings-row label {
+    font-size: 14px;
+    color: var(--text);
+}
+
+.settings-row input[type="color"] {
+    width: 40px;
+    height: 28px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px;
+    background: var(--bg);
+    cursor: pointer;
+}
+
+.settings-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+#settingsResetBtn {
+    padding: 7px 16px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+#settingsResetBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+#settingsCloseBtn {
+    padding: 7px 16px;
+    background: var(--accent);
+    border: none;
+    color: var(--accent-text);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+#settingsCloseBtn:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
+
+#settingsBtn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1;
+    font-size: 150%;
+}
+
+#settingsBtn:hover { color: var(--accent); }

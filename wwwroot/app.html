@@ -3,6 +3,8 @@
 <head>
     <title>Diffie</title>
     <link rel="stylesheet" href="./CSS/app.css">
+    <!-- Restore saved theme before first paint to avoid flash -->
+    <script>try{const s=JSON.parse(localStorage.getItem('theme')||'{}');for(const[k,v]of Object.entries(s))document.documentElement.style.setProperty(k,v);}catch(e){}</script>
 </head>
 <body>
     <div id="app">
@@ -10,7 +12,10 @@
         <!-- Left sidebar -->
         <aside id="sidebar">
             <div id="sidebar-header">
-                <span id="usernameDisplay">Loading...</span>
+                <div>
+                    <span id="usernameDisplay">Loading...</span>
+                    <button id="settingsBtn" title="Settings">&#9881;</button>
+                </div>
                 <button id="logoutBtn">Logout</button>
             </div>
 
@@ -53,7 +58,6 @@
                     <span id="selectedFriendName"></span>
                     <div class="transport-selector">
                         <label><input id="p2p" name="transportMode" type="radio" value="p2p"> P2P</label>
-                        <label><input id="sfu" name="transportMode" type="radio" value="sfu"> SFU</label>
                     </div>
                     <button id="callBtn">Call</button>
                     <button id="endCallBtn">End Call</button>
@@ -86,8 +90,48 @@
         </main>
     </div>
 
+    <!-- Settings overlay -->
+    <div id="settingsOverlay">
+        <div id="settingsModal">
+            <h2>Appearance</h2>
+            <div class="settings-row">
+                <label>Background</label>
+                <input type="color" id="pickerBg">
+            </div>
+            <div class="settings-row">
+                <label>Surface</label>
+                <input type="color" id="pickerSurface">
+            </div>
+            <div class="settings-row">
+                <label>Border / Header</label>
+                <input type="color" id="pickerBorder">
+            </div>
+            <div class="settings-row">
+                <label>Accent</label>
+                <input type="color" id="pickerAccent">
+            </div>
+            <div class="settings-row">
+                <label>Accent text</label>
+                <input type="color" id="pickerAccentText">
+            </div>
+            <div class="settings-row">
+                <label>Text</label>
+                <input type="color" id="pickerText">
+            </div>
+            <div class="settings-row">
+                <label>Call Button</label>
+                <input type="color" id="pickerSuccess">
+            </div>
+            <div class="settings-actions">
+                <button id="settingsResetBtn">Reset to defaults</button>
+                <button id="settingsCloseBtn">Done</button>
+            </div>
+        </div>
+    </div>
+
     <audio id="remoteAudio" autoplay></audio>
     <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <script type="module" src="../JavaScript/settings.js"></script>
     <script type="module" src="../JavaScript/state.js"></script>
     <script type="module" src="../JavaScript/app.js"></script>
     <script type="module" src="../JavaScript/webrtc.js"></script>
