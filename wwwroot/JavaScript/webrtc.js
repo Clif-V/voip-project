@@ -79,6 +79,7 @@ export async function startCall(username) {
     } else if (state.transportMode === "sfu") {
         // Placeholder for SFU transport
         console.warn("SFU mode not implemented yet");
+        state.transport = new P2PTransport(username);
         return;
     }
     await state.transport.initialize(state.localStream);
