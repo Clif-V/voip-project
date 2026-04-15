@@ -15,7 +15,6 @@ export async function addFriend(){
         });
 
         if(res.ok){
-            alert("Friend request sent!");
         }
         else{
             const errorText = await res.text();
@@ -54,7 +53,6 @@ export async function acceptFriendRequest(requestId){
     });
 
     if(res.ok){
-        alert("Friend request accepted!");
     }
     else{
         const errorText = await res.text();
@@ -71,7 +69,6 @@ export async function rejectFriendRequest(requestId){
     });
 
     if(res.ok){
-        alert("Friend request rejected.");
     }
     else{
         const errorText = await res.text();

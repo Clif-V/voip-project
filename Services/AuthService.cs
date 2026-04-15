@@ -21,9 +21,9 @@ namespace VoipBackend.Services
 
             var user = new User
             {
-                Username = username.ToLower(),
+                Username = username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
-                Email = email.ToLower(),
+                Email = email,
                 PublicKey = publicKey,
                 EncryptedPrivateKey = encryptedPrivateKey,
                 PrivateKeySalt = privateKeySalt,
@@ -38,7 +38,7 @@ namespace VoipBackend.Services
 
         public async Task<User?> findUserByUsername(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
         public async Task<User?> findUser(string identifier, string password)
@@ -46,18 +46,18 @@ namespace VoipBackend.Services
             if (identifier.Contains("@"))
             {
                 Console.WriteLine($"Finding user by email: {identifier}");
-                return await _context.Users.FirstOrDefaultAsync(u => u.Email == identifier.ToLower());
+                return await _context.Users.FirstOrDefaultAsync(u => u.Email == identifier);
             }
             else
             {
                 Console.WriteLine($"Finding user by username: {identifier}");
-                return await _context.Users.FirstOrDefaultAsync(u => u.Username == identifier.ToLower());
+                return await _context.Users.FirstOrDefaultAsync(u => u.Username == identifier);
             }
         }
 
         public async Task<User?> DeleteByUserName(string username)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (user == null)
             {
                 return null;

@@ -28,18 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const username = localStorage.getItem("username");
     document.getElementById("usernameDisplay").textContent = username || "User";
 
-    const savedMode = localStorage.getItem("transportMode") || "p2p";
-    state.transportMode = savedMode;
-    document.querySelector(`input[name="transportMode"][value="${savedMode}"]`).checked = true;
-
     await Signaling.startConnection();
-});
-
-transportRadios.forEach(radio => {
-    radio.addEventListener("change", () => {
-        state.transportMode = document.querySelector('input[name="transportMode"]:checked').value;
-        localStorage.setItem("transportMode", state.transportMode);
-    });
 });
 
 toggleRequestsBtn.addEventListener("click", () => {

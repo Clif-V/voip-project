@@ -15,7 +15,7 @@ namespace VoipBackend.Services
         public async Task<object> GetFriendRequestsForUser(string username)
         {
             var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username.ToLower());
+                .FirstOrDefaultAsync(u => u.Username == username);
 
             if (user == null) return new { incoming = new List<object>(), outgoing = new List<object>() };
 
@@ -46,8 +46,8 @@ namespace VoipBackend.Services
             Console.Write("fromUsername: " + fromUsername);
             Console.Write("toUsername: " + toUsername);
 
-            var fromUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == fromUsername.ToLower());
-            var toUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == toUsername.ToLower());
+            var fromUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == fromUsername);
+            var toUser = await _context.Users.FirstOrDefaultAsync(u => u.Username == toUsername);
 
             Console.WriteLine("fromUser: " + fromUser?.Username + " toUser:" + toUser?.Username);
 
@@ -93,7 +93,7 @@ namespace VoipBackend.Services
 
         public async Task<bool> DeleteFriendRequest(string username, int requestId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (user == null) return false;
 
             var friendRequest = await _context.FriendRequests
@@ -108,7 +108,7 @@ namespace VoipBackend.Services
 
         public async Task<User?> AcceptFriendRequest(string username, int requestId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
 
             Console.WriteLine("AcceptFriendRequest called for username: " + username + ", user found: " + (user != null));
 
@@ -139,7 +139,7 @@ namespace VoipBackend.Services
 
         public async Task<List<string>> GetFriendsForUser(string username)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
             if (user == null) return new List<string>();
 
             var friendships = await _context.Friendships
@@ -158,8 +158,8 @@ namespace VoipBackend.Services
 
         public async Task<bool> AreFriends(string username1, string username2)
         {
-            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username1.ToLower());
-            var user2 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username2.ToLower());
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username1);
+            var user2 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username2);
 
             if (user1 == null || user2 == null) return false;
 
@@ -173,8 +173,8 @@ namespace VoipBackend.Services
 
         public async Task<bool> RemoveFriendship(string username1, string username2)
         {
-            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username1.ToLower());
-            var user2 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username2.ToLower());
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username1);
+            var user2 = await _context.Users.FirstOrDefaultAsync(u => u.Username == username2);
 
             if (user1 == null || user2 == null) return false;
 
@@ -192,7 +192,7 @@ namespace VoipBackend.Services
 
         public async Task<User?> GetUserByUsername(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username.ToLower());
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
         // ...existing code...

@@ -248,8 +248,3 @@ export function appendMessage(text, isSent) {
     historyContainer.appendChild(msgDiv);
     historyContainer.scrollTop = historyContainer.scrollHeight;
 }
-
-export function showAlert(message) {
-    alert(message);
-}
-

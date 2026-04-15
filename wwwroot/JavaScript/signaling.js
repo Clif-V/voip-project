@@ -68,7 +68,7 @@ connection.on("CallEnded", async () => {
 
 connection.on("CallRejected", async () => {
     UI.hideIncomingCall();
-    UI.showAlert("Call rejected by the user.");
+    alert("Call rejected by the user.");
     state.pendingOffer = null;
     state.currentTargetUser = null;
     if(state.localStream) await Audio.stopAudioStream();

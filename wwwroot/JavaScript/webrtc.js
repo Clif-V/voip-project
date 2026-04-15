@@ -2,7 +2,7 @@ import { state } from "./state.js";
 import { connection } from "./signaling.js";
 import * as Audio from "./audio.js";
 
-class P2PTransport {
+class RTCTransport {
     constructor(targetUser) {
         this.targetUser = targetUser;
         this.pc = null;
@@ -10,7 +10,9 @@ class P2PTransport {
 
     async initialize(stream) {
         this.pc = new RTCPeerConnection({
-            iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+            iceServers: [{ urls: "stun:stun.l.google.com:19302" },
+                { urls: "turn:turn.diffie.net:3478", username: "diffie", credential: "d9F3kPq8zLxW2aV6mT1sR0yH7uJ4bN5cQ8eXkZp3YwU=" }
+            ]
         });
 
         stream.getTracks().forEach(track => {
@@ -61,27 +63,13 @@ class P2PTransport {
     }
 }
 
-class SFUTransport {
-    // Placeholder for SFU transport implementation
-    constructor(targetUser) {
-        this.targetUser = targetUser;
-    }
-}
-
 export async function startCall(username) {
 
     if (!state.localStream) await Audio.startAudioStream();
 
     state.currentTargetUser = username;
 
-    if (state.transportMode === "p2p") {
-        state.transport = new P2PTransport(username);
-    } else if (state.transportMode === "sfu") {
-        // Placeholder for SFU transport
-        console.warn("SFU mode not implemented yet");
-        state.transport = new P2PTransport(username);
-        return;
-    }
+    state.transport = new RTCTransport(username);
     await state.transport.initialize(state.localStream);
     await state.transport.createAndSendOffer();
 
@@ -95,7 +83,7 @@ export async function acceptCall() {
 
     if (state.transportMode === "p2p") {
         connection.invoke("SendMuteState", state.currentTargetUser, state.isMuted);
-        state.transport = new P2PTransport(state.currentTargetUser);
+        state.transport = new RTCTransport(state.currentTargetUser);
     } else if (state.transportMode === "sfu") {
         console.warn("SFU mode not implemented yet");
         return;

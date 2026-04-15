@@ -99,8 +99,6 @@ export async function register() {
 
     // Store private key in localStorage scoped to this user
     localStorage.setItem("privateKey_" + username, toBase64(exportedPrivateKey));
-
-    alert("Registration successful!");
     window.location.href = "index.html";
 }
 
@@ -145,7 +143,6 @@ export async function recoverPrivateKey() {
     }
 
     localStorage.setItem("privateKey_" + username, toBase64(privateKeyBuffer));
-    alert("Key recovered successfully! You can access your account.");
     UI.showApp();
 }
 
