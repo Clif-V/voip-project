@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: diffie-db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: voipdb
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d voipdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: diffie-app
+    restart: always
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Production
+      JwtSettings__SecretKey: d9F3kPq8zLxW2aV6mT1sR0yH7uJ4bN5cQ8eXkZp3YwU=
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=voipdb;Username=admin;Password=password
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  coturn:
+    image: instrumentisto/coturn
+    container_name: coturn
+    restart: always
+    ports:
+      - "3478:3478/udp"
+      - "3478:3478/tcp"
+      - "50000-50020:50000-50020/udp"
+    volumes:
+      - ./turnserver.conf:/etc/coturn/turnserver.conf
+    environment:
+      EXTERNAL_IP: ${EXTERNAL_IP:?Set EXTERNAL_IP to your server public IP}
+    command: -c /etc/coturn/turnserver.conf --external-ip=$${EXTERNAL_IP}

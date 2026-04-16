@@ -58,6 +58,12 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -79,10 +85,6 @@ if (app.Environment.IsDevelopment())
             ctx.Context.Response.Headers["Expires"] = "0";
         }
     });
-}
-else
-{
-    app.UseStaticFiles();
 }
 
 app.Lifetime.ApplicationStopping.Register(() =>

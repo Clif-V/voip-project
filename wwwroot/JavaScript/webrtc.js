@@ -1,6 +1,7 @@
 import { state } from "./state.js";
 import { connection } from "./signaling.js";
 import * as Audio from "./audio.js";
+import * as UI from "./ui.js";
 
 class RTCTransport {
     constructor(targetUser) {
@@ -11,7 +12,7 @@ class RTCTransport {
     async initialize(stream) {
         this.pc = new RTCPeerConnection({
             iceServers: [{ urls: "stun:stun.l.google.com:19302" },
-                { urls: "turn:turn.diffie.net:3478", username: "diffie", credential: "d9F3kPq8zLxW2aV6mT1sR0yH7uJ4bN5cQ8eXkZp3YwU" }
+                { urls: "turn:turn.diffie.net:3478", username: "diffie", credential: "d9F3kPq8zLxW2aV6mT1sR0yH7uJ4bN5cQ8eXkZp3YwU=" }
             ]
         });
 

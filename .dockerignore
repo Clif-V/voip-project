@@ -1,0 +1,8 @@
+bin/
+obj/
+db/
+.git/
+.gitignore
+*.md
+docker-compose.yaml
+turnserver.conf
