@@ -147,15 +147,8 @@ export async function recoverPrivateKey() {
 }
 
 export async function logout() {
-    Signaling.connection.stop();
-
-    console.log(state.localStream);
-
     await RTC.endCall();
-
-    if (state.localStream) {
-        state.localStream.getTracks().forEach(track => track.stop());
-    }
+    await Signaling.disconnect();
 
     localStorage.removeItem("privateKey_" + localStorage.getItem("username"));
     localStorage.removeItem("username");

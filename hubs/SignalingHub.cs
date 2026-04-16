@@ -70,7 +70,8 @@ public class SignalingHub : Hub
 
     public async Task SendMuteState(string targetUsername, bool isMuted)
     {
-        var callerUsername = users.FirstOrDefault(x => x.Value == Context.ConnectionId).Key;
+        if (!connections.TryGetValue(Context.ConnectionId, out var callerUsername))
+            return;
 
         if (users.TryGetValue(targetUsername, out var connectionId))
         {

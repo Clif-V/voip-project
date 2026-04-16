@@ -56,22 +56,13 @@ acceptCallBtn.addEventListener("click", async () => {
     UI.updateUI();
 });
 
-rejectCallBtn.addEventListener("click", () => {
+rejectCallBtn.addEventListener("click", async () => {
     console.log("Rejecting call from", state.currentTargetUser);
-    state.pendingOffer = null;
-    state.currentTargetUser = null;
-    UI.hideIncomingCall();
+    await WebRTC.rejectCall();
 });
 
 addFriendBtn.addEventListener("click", async () => {
     await Friend.addFriend();
-});
-
-callBtn.addEventListener("click", async () => {
-    if (state.selectedFriend) {
-        await WebRTC.startCall(state.selectedFriend);
-        UI.updateUI();
-    }
 });
 
 endCallBtn.addEventListener("click", async () => {
@@ -84,15 +75,7 @@ micBtn.addEventListener("click", async () => {
         console.log("Mic already active");
         return;
     }
-
-    try {
-        state.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        UI.setMicStatus("Mic: Access granted");
-        Audio.setupAudioAnalysis(state.localStream);
-    } catch (err) {
-        UI.setMicStatus("Mic: Access denied");
-        console.error(err);
-    }
+    await Audio.startAudioStream();
 });
 
 sendMessageBtn.addEventListener("click", async () => {

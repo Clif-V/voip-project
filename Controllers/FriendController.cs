@@ -21,14 +21,10 @@ public class FriendController(FriendService friendService, IHubContext<Signaling
         if (string.IsNullOrEmpty(fromUsername))
             return Unauthorized();
 
-        Console.WriteLine("From: " + fromUsername + ", To: " + input.ToUsername);
-
-        var result = await _friendService.SendFriendRequestByUsername(fromUsername, input.ToUsername);
-
-        Console.WriteLine("Result: " + result);
-
         if (await _friendService.AreFriends(fromUsername, input.ToUsername) || await _friendService.AreFriends(input.ToUsername, fromUsername))
             return BadRequest("You are already friends.");
+
+        var result = await _friendService.SendFriendRequestByUsername(fromUsername, input.ToUsername);
 
         if (result == null)
             return BadRequest("Unable to send friend request.");

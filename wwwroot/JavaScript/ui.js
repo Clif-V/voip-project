@@ -2,6 +2,8 @@ import { state } from "./state.js";
 import * as Friend from "./friend.js";
 import * as Message from "./message.js";
 
+let isRenderingFriendsList = false;
+
 document.getElementById("showPassword")?.addEventListener("mousedown", () => {
     document.getElementById("password").type = "text";
 });
@@ -88,41 +90,47 @@ export function renderFriendRequestList(friendRequests) {
 }
 
 export async function renderOnlineFriendsList() {
-    const friendsList = document.getElementById("friendsList");
-    friendsList.innerHTML = "";
+    if (isRenderingFriendsList) return;
+    isRenderingFriendsList = true;
+    try {
+        const friendsList = document.getElementById("friendsList");
+        friendsList.innerHTML = "";
 
-    const friends = await Friend.getFriends();
+        const friends = await Friend.getFriends();
 
-    for (const friend of friends) {
-        const item = document.createElement("li");
+        for (const friend of friends) {
+            const item = document.createElement("li");
 
-        const token = await Message.deriveConversationToken(friend);
-        conversationTokens[friend] = token;
+            const token = await Message.deriveConversationToken(friend);
+            conversationTokens[friend] = token;
 
-        const nameSpan = document.createElement("span");
-        nameSpan.textContent = friend;
+            const nameSpan = document.createElement("span");
+            nameSpan.textContent = friend;
 
-        const removeBtn = document.createElement("button");
-        removeBtn.innerHTML = "&#10006;";
-        removeBtn.className = "remove-friend-btn";
-        removeBtn.title = "Remove friend";
-        removeBtn.addEventListener("click", async (e) => {
-            e.stopPropagation();
-            await Friend.removeFriend(friend);
-            item.remove();
-            if (state.selectedFriend === friend) {
-                state.selectedFriend = null;
-                document.getElementById("noSelectionView").style.display = "flex";
-                document.getElementById("friendView").style.display = "none";
-            }
-        });
+            const removeBtn = document.createElement("button");
+            removeBtn.innerHTML = "&#10006;";
+            removeBtn.className = "remove-friend-btn";
+            removeBtn.title = "Remove friend";
+            removeBtn.addEventListener("click", async (e) => {
+                e.stopPropagation();
+                await Friend.removeFriend(friend);
+                item.remove();
+                if (state.selectedFriend === friend) {
+                    state.selectedFriend = null;
+                    document.getElementById("noSelectionView").style.display = "flex";
+                    document.getElementById("friendView").style.display = "none";
+                }
+            });
 
-        item.appendChild(nameSpan);
-        item.appendChild(removeBtn);
+            item.appendChild(nameSpan);
+            item.appendChild(removeBtn);
 
-        item.addEventListener("click", () => selectFriend(friend));
+            item.addEventListener("click", () => selectFriend(friend));
 
-        friendsList.appendChild(item);
+            friendsList.appendChild(item);
+        }
+    } finally {
+        isRenderingFriendsList = false;
     }
 }
 

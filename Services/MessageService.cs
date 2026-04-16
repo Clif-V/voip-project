@@ -29,7 +29,18 @@ namespace VoipBackend.Services
 
             conversation = new Conversation { Token = token };
             _context.Conversations.Add(conversation);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            {
+                // Another request inserted concurrently — fetch theirs
+                _context.Entry(conversation).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+                conversation = await _context.Conversations
+                    .FirstOrDefaultAsync(c => c.Token == token)
+                    ?? throw new InvalidOperationException("Conversation missing after concurrent insert.");
+            }
 
             return conversation;
         }

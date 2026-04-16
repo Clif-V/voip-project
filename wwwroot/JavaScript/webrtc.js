@@ -11,7 +11,7 @@ class RTCTransport {
     async initialize(stream) {
         this.pc = new RTCPeerConnection({
             iceServers: [{ urls: "stun:stun.l.google.com:19302" },
-                { urls: "turn:turn.diffie.net:3478", username: "diffie", credential: "d9F3kPq8zLxW2aV6mT1sR0yH7uJ4bN5cQ8eXkZp3YwU=" }
+                { urls: "turn:turn.diffie.net:3478", username: "diffie", credential: "d9F3kPq8zLxW2aV6mT1sR0yH7uJ4bN5cQ8eXkZp3YwU" }
             ]
         });
 
@@ -89,17 +89,27 @@ export async function acceptCall() {
         return;
     }
 
+    const offer = state.pendingOffer;
+    state.pendingOffer = null;
+
     await state.transport.initialize(state.localStream);
-    await state.transport.handleOffer(state.pendingOffer);
+    await state.transport.handleOffer(offer);
+
+    for (const candidate of state.pendingIceCandidates) {
+        await state.transport.handleIceCandidate(candidate);
+    }
+    state.pendingIceCandidates = [];
 
     state.appState = "in-call";
 }
 
 export async function rejectCall(){
+    const target = state.currentTargetUser;
     state.pendingOffer = null;
+    state.pendingIceCandidates = [];
     state.currentTargetUser = null;
     UI.hideIncomingCall();
-    connection.invoke("RejectCallToUser", state.currentTargetUser);
+    if (target) connection.invoke("RejectCallToUser", target);
 }
 
 export async function endCall() {
@@ -107,9 +117,9 @@ export async function endCall() {
         await connection.invoke("NotifyCallEnded", state.currentTargetUser);
         await state.transport.close();
         state.transport = null;
-        await Audio.stopAudioStream();
     }
 
+    await Audio.stopAudioStream();
     state.currentTargetUser = null;
     state.appState = "connected";
 }

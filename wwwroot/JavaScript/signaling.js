@@ -15,6 +15,11 @@ export const connection = new signalR.HubConnectionBuilder()
 connection.on("ReceiveOffer", (offer, callerUsername) => {
     console.log("Incoming call from:", callerUsername);
 
+    if (state.appState === "in-call" || state.pendingOffer) {
+        connection.invoke("RejectCallToUser", callerUsername);
+        return;
+    }
+
     state.currentTargetUser = callerUsername;
     state.pendingOffer = offer.offer;
     state.transportMode = offer.mode || "p2p"; // Default to P2P if mode not provided
@@ -25,6 +30,8 @@ connection.on("ReceiveOffer", (offer, callerUsername) => {
 //Reconnect
 connection.onreconnected(() => {
     console.log("Reconnected");
+    Friend.getFriendRequests();
+    UI.renderOnlineFriendsList();
 });
 
 //Answer
@@ -34,7 +41,11 @@ connection.on("ReceiveAnswer", async (answer) => {
 
 //ICE
 connection.on("ReceiveIceCandidate", async (candidate) => {
-    await state.transport?.handleIceCandidate(candidate);
+    if (state.transport) {
+        await state.transport.handleIceCandidate(candidate);
+    } else {
+        state.pendingIceCandidates.push(candidate);
+    }
 });
 
 connection.on("FriendRequestListUpdated", friendRequests => {
@@ -58,6 +69,8 @@ connection.on("CallEnded", async () => {
         state.transport = null;
     }
     state.currentTargetUser = null;
+    state.pendingOffer = null;
+    state.pendingIceCandidates = [];
     UI.hideIncomingCall();
 
     if (state.appState === "in-call") {
@@ -70,6 +83,7 @@ connection.on("CallRejected", async () => {
     UI.hideIncomingCall();
     alert("Call rejected by the user.");
     state.pendingOffer = null;
+    state.pendingIceCandidates = [];
     state.currentTargetUser = null;
     if(state.localStream) await Audio.stopAudioStream();
 });

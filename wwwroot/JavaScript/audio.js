@@ -23,17 +23,25 @@ export async function startAudioStream(){
         return;
     }
 
+    state.localStream = "pending";
     try {
-        state.localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        state.localStream = stream;
         UI.setMicStatus("Mic: Access granted");
         setupAudioAnalysis(state.localStream);
     } catch (err) {
+        state.localStream = null;
         UI.setMicStatus("Mic: Access denied");
         console.error(err);
     }
 }
 
 export async function stopAudioStream() {
+    if (state.animationFrameId) {
+        cancelAnimationFrame(state.animationFrameId);
+        state.animationFrameId = null;
+    }
+    state.analyser = null;
     if (state.localStream) {
         state.localStream.getTracks().forEach(t => t.stop());
         state.localStream = null;
@@ -54,7 +62,7 @@ function detectVolume() {
     const avg = Math.floor(sum / state.dataArray.length);
     UI.setVolume(avg);
 
-    requestAnimationFrame(detectVolume);
+    state.animationFrameId = requestAnimationFrame(detectVolume);
 }
 
 export function toggleMicrophoneMute() {
