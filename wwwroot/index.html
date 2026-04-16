@@ -3,21 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/index.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="CSS/index.css">
+    <title>Diffie - Secure Communication</title>
 </head>
 <body>
-    <div class="auth-card">
-        <h2>Diffie</h2>
-        <input id="username" placeholder="Username or Email" />
-        <input id="password" type="password" placeholder="Password" />
-        <p class="auth-footer" id="showPassword">Show Password</p>
-        <button id="loginBtn">Login</button>
-        <p class="auth-footer">Don't have an account? <a href="register.html">Register</a></p>
-        <p class="auth-footer">Lost your key? <a href="recover.html">Recover</a></p>
-    </div>
-    <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
-    <script type="module" src="JavaScript/login.js"></script>
-    <script type="module" src="JavaScript/ui.js"></script>
+    <header class="header-bar">
+        <div class="header-container">
+            <h1 class="logo">Diffie</h1>
+            <nav class="nav">
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="register.html" class="nav-link">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mainPanel">
+        <div class="mainView">
+            <div>
+                <h2>Welcome to Diffie</h2>
+                <p>Secure, private communication with encrypted messaging and voice calls designed for modern collaboration.</p>
+                <div class="hero-actions">
+                    <a href="login.html" class="inner-logbtn">Login</a>
+                    <a href="register.html" class="inner-regbtn">Create account</a>
+                </div>
+            </div>
+            <div class="mainCard">
+                <div class="mainCardTitle">What makes Diffie different</div>
+                <ul style="list-style-type:circle;">
+                    <li>End-to-end encryption</li>
+                    <li>Minimal data collection</li>
+                    <li>Mic controls + live audio status</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="features-div">
+            <h2 class="features-heading">Features</h2>
+            <section class="features">
+                <div class="widget">
+                    <h3>Secure Messaging</h3>
+                    <p>Send encrypted messages to your friends with end-to-end encryption.</p>
+                </div>
+                <div class="widget">
+                    <h3>Voice Calls</h3>
+                    <p>Make secure voice calls with P2P or SFU modes, ensuring your conversations remain private.</p>
+                </div>
+                <div class="widget">
+                    <h3>Friend Management</h3>
+                    <p>Easily add friends and manage friend requests.</p>
+                </div>
+                <div class="widget">
+                    <h3>Account Recovery</h3>
+                    <p>Securely recover your private key with your recovery phrase if you lose access.</p>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

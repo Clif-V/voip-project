@@ -444,10 +444,8 @@ C:/Users/cbvan/Documents/voip-project/obj/Debug/net9.0/compressed/kfid3lk83y-2k0
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/Npgsql.dll
 /Users/cb/Documents/GitHub/voip-project/bin/Debug/net9.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
-/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/rwusszjwnb-{0}-4wdlacr35j-4wdlacr35j.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/ns8yb9isck-{0}-iz7gahgr5o-iz7gahgr5o.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/g0vykmdnf9-{0}-vnkyxnyvow-vnkyxnyvow.gz
-/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/vt4oj8rc8s-{0}-t21x7fwxf8-t21x7fwxf8.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/fqa6fxedvn-{0}-8zrrf8hlgu-8zrrf8hlgu.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/s2x7p2kjpw-{0}-yn8atz414m-yn8atz414m.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/pkbj8huub4-{0}-yiwjl8wkca-yiwjl8wkca.gz
@@ -464,3 +462,7 @@ C:/Users/cbvan/Documents/voip-project/obj/Debug/net9.0/compressed/kfid3lk83y-2k0
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/1htkh4qp6d-{0}-xtwy4cj7vr-xtwy4cj7vr.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/xr43gyh40j-{0}-w7a6mjugcg-w7a6mjugcg.gz
 /Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/jbmv15hcc1-{0}-fneh8sbim9-fneh8sbim9.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/hwvzlvf3zo-{0}-4wdlacr35j-4wdlacr35j.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/vt4oj8rc8s-{0}-c8vzirb8ej-c8vzirb8ej.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/cocfzno0hp-{0}-ap3zk8oxj1-ap3zk8oxj1.gz
+/Users/cb/Documents/GitHub/voip-project/obj/Debug/net9.0/compressed/rwusszjwnb-{0}-q29i0f641b-q29i0f641b.gz
