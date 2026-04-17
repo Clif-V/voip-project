@@ -110,17 +110,29 @@ export async function rejectCall(){
     state.pendingIceCandidates = [];
     state.currentTargetUser = null;
     UI.hideIncomingCall();
-    if (target) connection.invoke("RejectCallToUser", target);
+    if (target) await connection.invoke("RejectCallToUser", target);
+
+    if (state.appState === "in-call") {
+        state.appState = "connected";
+        UI.updateUI();
+    }
 }
 
 export async function endCall() {
+    const target = state.currentTargetUser;
+
     if (state.transport) {
-        await connection.invoke("NotifyCallEnded", state.currentTargetUser);
         await state.transport.close();
         state.transport = null;
     }
 
+    if (target) {
+        await connection.invoke("NotifyCallEnded", target);
+    }
+
     await Audio.stopAudioStream();
     state.currentTargetUser = null;
+    state.pendingOffer = null;
+    state.pendingIceCandidates = [];
     state.appState = "connected";
 }

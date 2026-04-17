@@ -1,6 +1,26 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\CSS\\app.css",
+      "PackagePath": "staticwebassets\\CSS\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\CSS\\index.css",
+      "PackagePath": "staticwebassets\\CSS\\index.css"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\CSS\\login.css",
+      "PackagePath": "staticwebassets\\CSS\\login.css"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\CSS\\recover.css",
+      "PackagePath": "staticwebassets\\CSS\\recover.css"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\CSS\\register.css",
+      "PackagePath": "staticwebassets\\CSS\\register.css"
+    },
+    {
       "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\app.js",
       "PackagePath": "staticwebassets\\JavaScript\\app.js"
     },
@@ -13,8 +33,28 @@
       "PackagePath": "staticwebassets\\JavaScript\\auth.js"
     },
     {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\friend.js",
+      "PackagePath": "staticwebassets\\JavaScript\\friend.js"
+    },
+    {
       "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\login.js",
       "PackagePath": "staticwebassets\\JavaScript\\login.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\message.js",
+      "PackagePath": "staticwebassets\\JavaScript\\message.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\recover.js",
+      "PackagePath": "staticwebassets\\JavaScript\\recover.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\register.js",
+      "PackagePath": "staticwebassets\\JavaScript\\register.js"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\settings.js",
+      "PackagePath": "staticwebassets\\JavaScript\\settings.js"
     },
     {
       "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\JavaScript\\signaling.js",
@@ -39,6 +79,14 @@
     {
       "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\login.html",
+      "PackagePath": "staticwebassets\\login.html"
+    },
+    {
+      "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\recover.html",
+      "PackagePath": "staticwebassets\\recover.html"
     },
     {
       "Id": "C:\\Users\\cbvan\\Documents\\voip-project\\wwwroot\\register.html",

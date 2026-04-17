@@ -68,6 +68,7 @@ connection.on("CallEnded", async () => {
         await state.transport.close();
         state.transport = null;
     }
+    if (state.localStream) await Audio.stopAudioStream();
     state.currentTargetUser = null;
     state.pendingOffer = null;
     state.pendingIceCandidates = [];
@@ -82,10 +83,16 @@ connection.on("CallEnded", async () => {
 connection.on("CallRejected", async () => {
     UI.hideIncomingCall();
     alert("Call rejected by the user.");
+    if (state.transport) {
+        await state.transport.close();
+        state.transport = null;
+    }
     state.pendingOffer = null;
     state.pendingIceCandidates = [];
     state.currentTargetUser = null;
-    if(state.localStream) await Audio.stopAudioStream();
+    if (state.localStream) await Audio.stopAudioStream();
+    state.appState = "connected";
+    UI.updateUI();
 });
 
 connection.on("UserMuteChanged", (userID, isMuted) => {

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/cb/Documents/GitHub/voip-project/VoipBackend.csproj": {}
+    "C:\\Users\\cbvan\\Documents\\voip-project\\VoipBackend.csproj": {}
   },
   "projects": {
-    "/Users/cb/Documents/GitHub/voip-project/VoipBackend.csproj": {
+    "C:\\Users\\cbvan\\Documents\\voip-project\\VoipBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/cb/Documents/GitHub/voip-project/VoipBackend.csproj",
+        "projectUniqueName": "C:\\Users\\cbvan\\Documents\\voip-project\\VoipBackend.csproj",
         "projectName": "VoipBackend",
-        "projectPath": "/Users/cb/Documents/GitHub/voip-project/VoipBackend.csproj",
-        "packagesPath": "/Users/cb/.nuget/packages/",
-        "outputPath": "/Users/cb/Documents/GitHub/voip-project/obj/",
+        "projectPath": "C:\\Users\\cbvan\\Documents\\voip-project\\VoipBackend.csproj",
+        "packagesPath": "C:\\Users\\cbvan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cbvan\\Documents\\voip-project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/cb/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\cbvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -24,7 +24,6 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -39,11 +38,10 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "11.0.100"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "BCrypt.Net-Next": {
@@ -92,20 +90,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.13, 9.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[9.0.13, 9.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.13, 9.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -114,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/11.0.100-preview.2.26159.112/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
